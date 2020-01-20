@@ -12,7 +12,8 @@ function(input, output, session) {
     "loadData.R",
     "correl.R",
     "outliers.R",
-    "analysis.R"
+    "ranking.R",
+    "sip.R"
   )
 
   for (f in files)

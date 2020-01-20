@@ -25,7 +25,11 @@ function(request) {
     ),
     tabPanel(
       title = "Ranking",
-      source_ui("analysis.R")
+      source_ui("ranking.R")
+    ),
+    tabPanel(
+      title = "SIP",
+      source_ui("sip.R")
     ),
     tabPanel(
       title = "About",

@@ -25,5 +25,8 @@ sidebarLayout(
       "outliersPlot",
       inline = TRUE
     )
+    # parcoordsOutput(
+    #   "outliersPlot"
+    # )
   )
 )
