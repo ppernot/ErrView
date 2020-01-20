@@ -11,6 +11,7 @@ function(input, output, session) {
   files <- c(
     "loadData.R",
     "correl.R",
+    "outliers.R",
     "analysis.R"
   )
 

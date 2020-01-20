@@ -20,6 +20,10 @@ function(request) {
       source_ui("correl.R")
     ),
     tabPanel(
+      title = "Outliers",
+      source_ui("outliers.R")
+    ),
+    tabPanel(
       title = "Ranking",
       source_ui("analysis.R")
     ),

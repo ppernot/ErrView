@@ -5,7 +5,7 @@ observe({
 
     bsR = input$bsSizeRatio
 
-    figRank(
+    plotRankMat(
       E         = Errors,
       score     = input$stat,
       type      = input$baType,

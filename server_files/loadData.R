@@ -10,9 +10,12 @@ output$selectMsg <- renderPrint({
     check.names = FALSE)
 
   systems  <<- data[,1]
-  methList <<- colnames(data)[-1]
-  Errors   <<- data[,-1]
-  K(length(methList))
+  Ref      <<- data[,2]
+  Data     <<- data[,-c(1,2)]
+  methList <<- colnames(Data)
+  K(length(methList)) # Dynamic size for graphics updates
+  Errors   <<- Ref - Data
+
 
   cat('Systems  : ', length(systems),'\n')
   cat('Methods  : ', K(),'\n')
