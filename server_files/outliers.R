@@ -6,22 +6,24 @@ observe({
     order  = 1:ncol(Errors)
     if(input$clusterParaPlot)
       order = hclust(dist(t(Errors)))$order
+    X = Errors[,order]
 
     lab.thresh = 0
     labels = NULL
     if(input$scaleParaPlot){
-      lab.thresh = 2
-      labels = systems
+      lab.thresh = input$labelParaPlot
+      labels = rownames(X)
     }
 
     gpLoc = gPars
     gpLoc$pty = 'm'
     plotParallel(
-      Errors[,order],
+      X,
       rescale  = input$scaleParaPlot,
       scramble = input$scrambleParaPlot,
       labels   = labels,
       lab.thresh = lab.thresh,
+      outliers = input$outliersParaPlot,
       gPars    = gpLoc)
 
   },

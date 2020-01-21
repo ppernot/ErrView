@@ -17,6 +17,23 @@ sidebarLayout(
       "clusterParaPlot",
       label = "Clustering",
       value = FALSE
+    ),
+    radioButtons(
+      "outliersParaPlot",
+      label = "Outliers",
+      choices = list(
+        "No" = "no",
+        "Q+IQR" = "iqr",
+        "CI95" = "ci95"
+      )
+    ),
+    sliderInput(
+      "labelParaPlot",
+      label = "Labels Thresh.",
+      min = 0,
+      max = 5,
+      step = 0.1,
+      value = 3
     )
   ),
   mainPanel(

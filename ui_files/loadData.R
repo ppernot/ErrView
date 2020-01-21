@@ -4,11 +4,13 @@ sidebarLayout(
     h4("Select Errors FIle"),
     hr( style="border-color: #666;"),
     fileInput(
-      "dataFile", "Choose CSV File",
-              accept = c(
-                "text/csv",
-                "text/comma-separated-values,text/plain",
-                ".csv")
+      "dataFile",
+      label = "Choose CSV File",
+      multiple = FALSE,
+      accept = c(
+        "text/csv",
+        "text/comma-separated-values,text/plain",
+        ".csv")
     )
   ),
   mainPanel(
