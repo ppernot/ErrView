@@ -13,7 +13,8 @@ function(input, output, session) {
     "correl.R",
     "outliers.R",
     "ranking.R",
-    "sip.R"
+    "sip.R",
+    "stats.R"
   )
 
   for (f in files)

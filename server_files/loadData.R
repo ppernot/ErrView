@@ -15,13 +15,17 @@ output$selectMsg <- renderPrint({
   Data     <<- data[,-c(1,2)]
   methList <<- colnames(Data)
   K(length(methList)) # Dynamic size for graphics updates
-  Errors   <<- Ref - Data
+
+  if(input$useRelative)
+    Errors   <<- (Ref - Data)/Ref
+  else
+    Errors   <<- Ref - Data
+
 
   cat('Errors (first lines)\n')
-  print(head(Errors,n=12))
+  print(head(signif(Errors,2),n=12))
   cat('\n')
   cat('Systems  : ', length(systems),'\n')
   cat('Methods  : ', K(),'\n')
+
 })
-
-

@@ -32,6 +32,10 @@ function(request) {
       source_ui("sip.R")
     ),
     tabPanel(
+      title = "Statistics",
+      source_ui("stats.R")
+    ),
+    tabPanel(
       title = "About",
       source_ui("about.R")
     )

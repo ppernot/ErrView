@@ -11,9 +11,9 @@ options(
 
 # CRAN Libraries ####
 libs <- c(
-  "devtools","Hmisc", "rlist","boot",
+  "devtools","Hmisc", "rlist", "boot",
   "shiny", "shinyBS", "shinycssloaders", "shinyFiles",
-  "DT", "tools", "inlmisc","distillery","parcoords"
+  "DT", "tools", "inlmisc", "distillery"
 )
 for (lib in libs) {
   if (!require(lib, character.only = TRUE, quietly = TRUE)) {
