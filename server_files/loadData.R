@@ -1,3 +1,4 @@
+K <- reactiveVal()
 output$selectMsg <- renderPrint({
   if(is.null(input$dataFile))
     return(NULL)

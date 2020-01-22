@@ -16,12 +16,24 @@ function(request) {
       source_ui("loadData.R")
     ),
     tabPanel(
-      title = "Correlations",
-      source_ui("correl.R")
-    ),
-    tabPanel(
       title = "Outliers",
       source_ui("outliers.R")
+    ),
+    tabPanel(
+      title = "Statistics",
+      source_ui("stats.R")
+    ),
+    tabPanel(
+      title = "HistDist",
+      source_ui("histDist.R")
+    ),
+    tabPanel(
+      title = "ECDFs",
+      source_ui("ecdf.R")
+    ),
+    tabPanel(
+      title = "Correlations",
+      source_ui("correl.R")
     ),
     tabPanel(
       title = "Ranking",
@@ -30,10 +42,6 @@ function(request) {
     tabPanel(
       title = "SIP",
       source_ui("sip.R")
-    ),
-    tabPanel(
-      title = "Statistics",
-      source_ui("stats.R")
     ),
     tabPanel(
       title = "About",

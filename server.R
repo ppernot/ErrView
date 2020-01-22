@@ -1,20 +1,20 @@
 function(input, output, session) {
 
   # Initialize ####
-  if (!dir.exists("outputDir")) {
-    dir.create("outputDir", showWarnings = FALSE)
-  }
-
-  K <- reactiveVal()
+  # if (!dir.exists("outputDir")) {
+  #   dir.create("outputDir", showWarnings = FALSE)
+  # }
 
   # Load Server files ####
   files <- c(
     "loadData.R",
-    "correl.R",
     "outliers.R",
+    "stats.R",
+    "histDist.R",
+    "ecdf.R",
+    "correl.R",
     "ranking.R",
-    "sip.R",
-    "stats.R"
+    "sip.R"
   )
 
   for (f in files)
