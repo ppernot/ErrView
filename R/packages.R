@@ -13,7 +13,7 @@ options(
 libs <- c(
   "devtools","Hmisc", "rlist", "boot",
   "shiny", "shinyBS", "shinycssloaders", "shinyFiles",
-  "DT", "tools", "inlmisc", "distillery"
+  "DT", "tools", "inlmisc", "distillery","ErrViewLib"
 )
 for (lib in libs) {
   if (!require(lib, character.only = TRUE, quietly = TRUE)) {

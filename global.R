@@ -1,6 +1,6 @@
 # enableBookmarking("server")
 source("R/packages.R")
-source("R/functions.R")
+# source("R/functions.R")
 
 # Proportions of Side/Main Panels ####
 sideWidth  <- 3

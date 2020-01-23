@@ -14,7 +14,7 @@ sidebarLayout(
     ),
     radioButtons(
       "corMethod",
-      label = "Method",
+      label = "Method for Errors",
       choices = list(
         "Pearson"  = "pearson",
         "Spearman" = "spearman",

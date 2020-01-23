@@ -3,11 +3,16 @@ observe({
     if(is.null(input$dataFile))
       return(NULL)
 
-    S = estBS2 (Errors,
-                props = "mse",
-                est.corr = FALSE,
-                est.sip  = TRUE,
-                nboot = 1000)
+    if(is.null(bsList()) |
+       is.null(bsList()$sip)) {
+      S = estBS1 (Errors,
+                  props  = "mse",
+                  do.sip = TRUE,
+                  silent = TRUE)
+    } else {
+      S = bsList()
+    }
+
     plotSIPMat(
       S$sip,
       gPars = gPars)

@@ -14,18 +14,26 @@ observe({
     if (data == "data") {
       cmat = cor(Errors, method = method)
     } else if (data == "mue") {
-      S = estBS2 (Errors,
-                  props = 'mue',
-                  est.corr = TRUE,
-                  est.sip = FALSE,
-                  nboot = 1000)
+      if(is.null(bsList()) |
+         is.null(bsList()$mue)) {
+        S = estBS1 (Errors,
+                    props  = "mue",
+                    do.sip = FALSE,
+                    silent = TRUE)
+      } else {
+        S = bsList()
+      }
       cmat = S$mue$corr
     } else {
-      S = estBS2 (Errors,
-                  props = 'q95hd',
-                  est.corr = TRUE,
-                  est.sip = FALSE,
-                  nboot = 1000)
+      if(is.null(bsList()) |
+         is.null(bsList()$q95hd)) {
+        S = estBS1 (Errors,
+                    props  = "q95hd",
+                    do.sip = FALSE,
+                    silent = TRUE)
+      } else {
+        S = bsList()
+      }
       cmat = S$q95hd$corr
     }
 
