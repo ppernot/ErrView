@@ -7,7 +7,7 @@ function(request) {
   }
 
   navbarPage(
-    "Reactor",
+    "ErrView",
     theme = shinythemes::shinytheme(
       c("cosmo", "cerulean", "spacelab", "yeti")[3]
     ),
