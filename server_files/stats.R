@@ -12,6 +12,7 @@ observeEvent(
       do.sip = input$sipChoice,
       silent=TRUE
     )
+    bs$outliers = outSel()
     bsList(bs)
   }
 )
@@ -20,10 +21,18 @@ observeEvent(
 output$outStats <- renderPrint({
   if(is.null(bsList()))
     return(cat('Please generate stats...'))
-  if(!is.null(outSel()))
-    cat('Outliers: ',systems[outSel()],'\n\n')
 
   bs = bsList()
+  outliers = bs$outliers
+
+  if(!is.null(outSel())) {
+    cat('Outliers: ',systems[outSel()],'\n\n')
+  } else {
+    cat('No outliers selected\n\n')
+  }
+  if(!identical(outliers,outSel()))
+    return(cat('Outliers changed: please regenerate stats...'))
+
   df = genTabStat(bs, comp=input$pinvChoice, ref = 0, numDig=1)
   sel = ! colnames(df) %in% c('punc','pg')
   print(df[,sel])

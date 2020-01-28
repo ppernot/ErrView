@@ -1,8 +1,15 @@
 outSel <- reactiveVal()
 observe({
   output$outliersPlot <- renderPlot({
-    if(is.null(input$dataFile))
-      return(NULL)
+    if(is.null(input$dataFile)) {
+      validate(
+        need(
+          !is.null(input$dataFile),
+          'Please choose a datafile !'
+        )
+      )
+      return()
+    }
 
     order  = 1:ncol(Errors)
     if(input$clusterParaPlot)
@@ -18,7 +25,7 @@ observe({
 
     gpLoc = gPars
     gpLoc$pty = 'm'
-    out = plotParallel(
+    out = ErrViewLib::plotParallel(
       X,
       rescale  = input$scaleParaPlot,
       scramble = input$scrambleParaPlot,

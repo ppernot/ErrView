@@ -1,31 +1,12 @@
 sidebarLayout(
   sidebarPanel(
     width = sideWidth,
-    h4("Outliers"),
+    h4("Global Outliers"),
     hr( style="border-color: #666;"),
     checkboxInput(
       "scaleParaPlot",
-      label = "Scale",
-      value = FALSE
-    ),
-    checkboxInput(
-      "scrambleParaPlot",
-      label = "Scramble",
-      value = FALSE
-    ),
-    checkboxInput(
-      "clusterParaPlot",
-      label = "Clustering",
-      value = FALSE
-    ),
-    radioButtons(
-      "outliersParaPlot",
-      label = "Outliers",
-      choices = list(
-        "No" = "no",
-        "Q+IQR" = "iqr",
-        "CI95" = "ci95"
-      )
+      label = "Scaled Errors",
+      value = TRUE
     ),
     sliderInput(
       "labelParaPlot",
@@ -34,6 +15,26 @@ sidebarLayout(
       max = 5,
       step = 0.1,
       value = 3
+    ),
+    checkboxInput(
+      "scrambleParaPlot",
+      label = "Scramble X",
+      value = FALSE
+    ),
+    checkboxInput(
+      "clusterParaPlot",
+      label = "Methods Clustering",
+      value = FALSE
+    ),
+    radioButtons(
+      "outliersParaPlot",
+      label = "Outliers",
+      choices = list(
+        "No" = "no",
+        "Q+IQR" = "iqr",
+        "CI90" = "ci90",
+        "CI95" = "ci95"
+      )
     )
   ),
   mainPanel(

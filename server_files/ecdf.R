@@ -7,7 +7,7 @@ output$methodsEcdf <- renderUI({
     label = "Choose methods",
     choiceNames = methList,
     choiceValues = methList,
-    selected = methList
+    selected = methList[1]
   )
 
 })

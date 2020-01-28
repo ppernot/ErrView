@@ -1,7 +1,14 @@
 K <- reactiveVal()
 output$selectMsg <- renderPrint({
-  if(is.null(input$dataFile))
-    return(NULL)
+  if(is.null(input$dataFile)) {
+    cat('Expected datafile format (.csv):\n\n')
+    cat('"","Ref","Meth1","Meth2",...,"MethN"\n')
+    cat('"Syst1","0.1","0.2","0.3",...,"0.4"\n')
+    cat('...\n')
+    cat('"SystM","0.5","0.6","0.7",...,"0.8"\n\n')
+    return()
+  }
+
   cat('Data set : ', input$dataFile[['name']],'\n')
 
   data = read.csv(
@@ -24,7 +31,7 @@ output$selectMsg <- renderPrint({
 
 
   cat('Errors (first lines)\n')
-  print(head(signif(Errors,2),n=12))
+  print(head(signif(Errors,2),n=5))
   cat('\n')
   cat('Systems  : ', length(systems),'\n')
   cat('Methods  : ', K(),'\n')

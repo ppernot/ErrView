@@ -12,6 +12,8 @@ observe({
     # margin = input$corMargin
 
     if (data == "data") {
+      if(!is.null(outSel()))
+        Errors = Errors[ !outSel(), ]
       cmat = cor(Errors, method = method)
     } else if (data == "mue") {
       if(is.null(bsList()) |

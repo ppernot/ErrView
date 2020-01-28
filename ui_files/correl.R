@@ -19,7 +19,8 @@ sidebarLayout(
         "Pearson"  = "pearson",
         "Spearman" = "spearman",
         "Kendall"  = "kendall"
-      )
+      ),
+      selected = "spearman"
     ),
     checkboxInput(
       "dendro",
