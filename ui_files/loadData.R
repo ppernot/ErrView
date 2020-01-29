@@ -34,6 +34,7 @@ sidebarLayout(
   ),
   mainPanel(
     width = mainWidth,
-    verbatimTextOutput("selectMsg")
+    verbatimTextOutput("selectMsg"),
+    htmlOutput("howTo"),
   )
 )

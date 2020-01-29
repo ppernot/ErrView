@@ -20,7 +20,7 @@ observeEvent(
 
 output$outStats <- renderPrint({
   if(is.null(bsList()))
-    return(cat('Please generate stats...'))
+    return(cat(' Please select stats, \n click on Generate \n and wait...'))
 
   bs = bsList()
   outliers = bs$outliers
