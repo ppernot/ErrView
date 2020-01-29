@@ -6,6 +6,11 @@ sidebarLayout(
     uiOutput("methodsHD"),
     hr( style="border-color: #666;"),
     checkboxInput(
+      'removeGlobOut',
+      label = 'Remove glob. outl.',
+      value = FALSE
+    ),
+    checkboxInput(
       'regHD',
       label = 'Reg. line',
       value = FALSE
@@ -22,7 +27,7 @@ sidebarLayout(
     ),
     checkboxInput(
       'outHD',
-      label = 'Outliers',
+      label = 'Show Outliers',
       value = FALSE
     ),
     hr( style="border-color: #666;"),

@@ -14,9 +14,11 @@ output$plotHistDist <- renderPlot({
   if(is.null(input$dataFile))
     return(NULL)
 
-  if(!is.null(outSel())) {
+  if(!is.null(outSel()) &
+     input$removeGlobOut) {
     Errors = Errors[ !outSel(), ]
     Data   = Data[ !outSel(), ]
+    systems= systems[ !outSel() ]
   }
 
   gpLoc = gPars
@@ -38,7 +40,7 @@ output$plotHistDist <- renderPlot({
     plotGauss = input$normHD, # Plot Gaussian fit of hist.
     outLiers  = input$outHD,  # Mark outliers
     p         = 0.95,         # Width of proba interval to detect outliers
-    labels    = 1:length(x),
+    labels    = systems,
     select    = NULL,         # Indices of points to colorize
     main      = NULL,
     plotReg   = input$regHD,  # Regression line
