@@ -13,6 +13,10 @@ observe({
 
     if (data == "data") {
       if(!is.null(outSel()))
+        Data = Data[ !outSel(), ]
+      cmat = cor(Data, method = method)
+    } else if (data == "errors") {
+      if(!is.null(outSel()))
         Errors = Errors[ !outSel(), ]
       cmat = cor(Errors, method = method)
     } else if (data == "mue") {

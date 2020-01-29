@@ -7,10 +7,12 @@ sidebarLayout(
       "corSample",
       label = "Echantillons",
       choices = list(
-        "Errors" = "data",
+        "Data"   = "data",
+        "Errors" = "errors",
         "MUE"    = "mue",
         "Q95"    = "q95hd"
-      )
+      ),
+      selected = "errors"
     ),
     radioButtons(
       "corMethod",
