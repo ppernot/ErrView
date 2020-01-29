@@ -42,10 +42,6 @@ function(request) {
     tabPanel(
       title = "SIP",
       source_ui("sip.R")
-    ),
-    tabPanel(
-      title = "About",
-      source_ui("about.R")
     )
   )
 
