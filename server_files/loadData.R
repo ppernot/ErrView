@@ -1,4 +1,5 @@
-K <- reactiveVal()
+K <- reactiveVal(1)
+dataUnits <- reactiveVal()
 output$selectMsg <- renderPrint({
   if(is.null(input$dataFile)) {
     cat('Expected datafile format (.csv):\n\n')
@@ -29,12 +30,16 @@ output$selectMsg <- renderPrint({
   else
     Errors   <<- Ref - Data
 
+  dataUnits(input$units)
+  if(input$useRelative)
+    dataUnits('')
 
   cat('Errors (first lines)\n')
   print(head(signif(Errors,2),n=5))
   cat('\n')
   cat('Systems  : ', length(systems),'\n')
   cat('Methods  : ', K(),'\n')
+  cat('Units    : ', dataUnits(),'\n')
 
 })
 

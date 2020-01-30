@@ -12,8 +12,15 @@ output$methodsEcdf <- renderUI({
 
 })
 output$plotECDF <- renderPlot({
-  if(is.null(input$dataFile))
-    return(NULL)
+  if(is.null(input$dataFile)) {
+    validate(
+      need(
+        !is.null(input$dataFile),
+        'Please choose a datafile !'
+      )
+    )
+    return()
+  }
 
   if(!is.null(outSel()))
     Errors = Errors[ !outSel(), ]
@@ -36,8 +43,9 @@ output$plotECDF <- renderPlot({
     show.MAE  = input$showMUE,
     col.index = which(methList %in% input$selMethEcdf),
     weights   = NULL,
-    units     = 'a.u.',
+    units     = dataUnits(),
     label     = 0,
     leg.lwd   = 10,
     gPars     = gpLoc)
-})
+},
+width = plotWidth, height = plotHeight)

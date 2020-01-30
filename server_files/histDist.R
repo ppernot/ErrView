@@ -11,8 +11,15 @@ output$methodsHD <- renderUI({
 
 })
 output$plotHistDist <- renderPlot({
-  if(is.null(input$dataFile))
-    return(NULL)
+  if(is.null(input$dataFile)) {
+    validate(
+      need(
+        !is.null(input$dataFile),
+        'Please choose a datafile !'
+      )
+    )
+    return()
+  }
 
   if(!is.null(outSel()) &
      input$removeGlobOut) {
@@ -35,22 +42,22 @@ output$plotHistDist <- renderPlot({
     x, y,
     uy        = NULL,
     nclass    = nclass,       # Nb class for histogram
-    xlab      = 'Data',
-    ylab      = 'Errors',
+    xlab      = paste0('Data [',dataUnits(),']'),
+    ylab      = paste0('Errors [',dataUnits(),']'),
     plotGauss = input$normHD, # Plot Gaussian fit of hist.
     outLiers  = input$outHD,  # Mark outliers
     p         = 0.95,         # Width of proba interval to detect outliers
     labels    = systems,
     select    = NULL,         # Indices of points to colorize
-    main      = NULL,
+    main      = input$selMethHD,
     plotReg   = input$regHD,  # Regression line
     plotConf  = input$regHD,  # Confidence limits on reg-line
     plotBA    = input$baHD,   # Bland-Altman LOAs
     plotBAci  = input$baHD,   # 95% CI on Bland-Altman LOAs
-    xlim      = c(min(x),1.1*max(x)),
-    ylim      = range(y),
+    xlim      = c(min(x),1.1*max(x)),# Leave space for labels
+    ylim      = if(input$yScale) range(Errors) else range(y),
     scaleLegBA= 1,
     gPars     = gpLoc
   )
-
-})
+},
+width = plotWidth, height = plotHeight)

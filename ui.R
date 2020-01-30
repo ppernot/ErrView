@@ -9,7 +9,7 @@ function(request) {
   navbarPage(
     "ErrView",
     theme = shinythemes::shinytheme(
-      c("cosmo", "cerulean", "spacelab", "yeti")[3]
+      c("cosmo", "cerulean", "spacelab", "yeti")[2]
     ),
     tabPanel(
       title = "Data",
@@ -40,8 +40,12 @@ function(request) {
       source_ui("ranking.R")
     ),
     tabPanel(
-      title = "SIP",
+      title = "SIP mat.",
       source_ui("sip.R")
+    ),
+    tabPanel(
+      title = "Delta |Err|",
+      source_ui("delta.R")
     )
   )
 

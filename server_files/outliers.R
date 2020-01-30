@@ -17,10 +17,9 @@ observe({
     X = Errors[,order]
 
     lab.thresh = 0
-    labels = NULL
+    labels = rownames(X)
     if(input$scaleParaPlot){
       lab.thresh = input$labelParaPlot
-      labels = rownames(X)
     }
 
     gpLoc = gPars
@@ -30,6 +29,7 @@ observe({
       rescale  = input$scaleParaPlot,
       scramble = input$scrambleParaPlot,
       labels   = labels,
+      units    = dataUnits(),
       lab.thresh = lab.thresh,
       outliers = input$outliersParaPlot,
       gPars    = gpLoc)
@@ -38,7 +38,7 @@ observe({
     if(input$outliersParaPlot != "no")
       outSel(out)
   },
-  width  = round(plotWidth  * K()^0.5 / nomSize),
+  width  = min(plotWidth,round(plotWidth  * K()^0.5 / nomSize)),
   height = plotHeight
   )
 })

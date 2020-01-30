@@ -1,7 +1,14 @@
 observe({
   output$sipPlot <- renderPlot({
-    if(is.null(input$dataFile))
-      return(NULL)
+    if(is.null(input$dataFile)) {
+      validate(
+        need(
+          !is.null(input$dataFile),
+          'Please choose a datafile !'
+        )
+      )
+      return()
+    }
 
     if(is.null(bsList()) |
        is.null(bsList()$sip)) {

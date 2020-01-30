@@ -31,9 +31,12 @@ sidebarLayout(
   ),
   mainPanel(
     width = mainWidth,
-    plotOutput(
-      "benchAuthority",
-      inline = TRUE
+    shinycssloaders::withSpinner(
+      plotOutput(
+        "benchAuthority",
+        inline = TRUE
+      ),
+      type = 4
     )
   )
 )

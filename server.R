@@ -14,7 +14,8 @@ function(input, output, session) {
     "ecdf.R",
     "correl.R",
     "ranking.R",
-    "sip.R"
+    "sip.R",
+    "delta.R"
   )
 
   for (f in files)

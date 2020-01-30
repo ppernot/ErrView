@@ -5,8 +5,8 @@ source("R/packages.R")
 # Proportions of Side/Main Panels ####
 sideWidth  <- 3
 mainWidth  <- 12 - sideWidth
-plotHeight <- 600
-plotWidth  <- 600
+plotHeight <- 550
+plotWidth  <- 750
 nomSize    <- 5 # Size of matrix for good plot with plotHeight px
 
 # Graphical parameters ####

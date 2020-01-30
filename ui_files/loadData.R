@@ -12,6 +12,11 @@ sidebarLayout(
         "text/comma-separated-values,text/plain",
         ".csv")
     ),
+    textInput(
+      "units",
+      label = "Units",
+      value = 'a.u.'
+    ),
     checkboxInput(
       "useRelative",
       label = "Swich to relative errors",

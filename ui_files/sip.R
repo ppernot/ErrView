@@ -1,14 +1,17 @@
 sidebarLayout(
   sidebarPanel(
     width = sideWidth,
-    h4("Improvement Proba"),
+    h4("Systematic Improvement\n Probability Matrix"),
     hr( style="border-color: #666;")
   ),
   mainPanel(
     width = mainWidth,
-    plotOutput(
-      "sipPlot",
-      inline = TRUE
+    shinycssloaders::withSpinner(
+      plotOutput(
+        "sipPlot",
+        inline = TRUE
+      ),
+      type = 4
     )
   )
 )

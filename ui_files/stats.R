@@ -13,17 +13,17 @@ sidebarLayout(
         'MSE'  = 'mse',
         'RMSD' = 'rmsd'
         ),
-      selected = c('mue','q95hd')
+      selected = c('mue','q95hd','mse','rmsd')
     ),
     checkboxInput(
       "sipChoice",
       label = "SIP analysis",
-      value = FALSE
+      value = TRUE
     ),
     checkboxInput(
       "pinvChoice",
       label = "Inversion Proba",
-      value = FALSE
+      value = TRUE
     ),
     actionButton(
       "genStats",
@@ -33,7 +33,10 @@ sidebarLayout(
   ),
   mainPanel(
     width = mainWidth,
-    verbatimTextOutput("outStats")#,
-    # plotOutput("plotECDF")
+    verbatimTextOutput("outStatsMsg"),
+    shinycssloaders::withSpinner(
+      DTOutput("outStats"),
+      type = 4
+    )
   )
 )

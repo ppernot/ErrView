@@ -18,17 +18,22 @@ sidebarLayout(
     checkboxInput(
       'baHD',
       label = 'Bland-Altmann',
-      value = FALSE
+      value = TRUE
     ),
     checkboxInput(
       'normHD',
       label = 'Normal fit',
-      value = FALSE
+      value = TRUE
     ),
     checkboxInput(
       'outHD',
       label = 'Show Outliers',
       value = FALSE
+    ),
+    checkboxInput(
+      'yScale',
+      label = 'Glob. error scale',
+      value = TRUE
     ),
     hr( style="border-color: #666;"),
     sliderInput(
