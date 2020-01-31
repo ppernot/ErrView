@@ -1,3 +1,5 @@
+version = 1.1
+
 source("R/packages.R")
 
 # Proportions of Side/Main Panels ####
