@@ -9,7 +9,7 @@ function(request) {
   navbarPage(
     "ErrView",
     theme = shinythemes::shinytheme(
-      c("cosmo", "cerulean", "spacelab", "yeti")[2]
+      c("cosmo", "cerulean", "spacelab", "yeti")[3]
     ),
     tabPanel(
       title = "Data",

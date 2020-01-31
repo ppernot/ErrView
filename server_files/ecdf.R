@@ -41,6 +41,8 @@ output$plotECDF <- renderPlot({
     title     = '',
     show.leg  = TRUE,
     show.MAE  = input$showMUE,
+    show.Q95  = input$showQ95,
+    Q.algo    = input$Qalgo,
     col.index = which(methList %in% input$selMethEcdf),
     weights   = NULL,
     units     = dataUnits(),

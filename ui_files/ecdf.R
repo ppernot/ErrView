@@ -8,6 +8,16 @@ sidebarLayout(
       label = "Show MUE",
       value = FALSE
     ),
+    checkboxInput(
+      "showQ95",
+      label = "Show Q95",
+      value = TRUE
+    ),
+    checkboxInput(
+      "Qalgo",
+      label = "HD quantiles",
+      value = TRUE
+    ),
     sliderInput(
       "scaleEcdf",
       label = "Scale X axis",
