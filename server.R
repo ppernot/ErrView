@@ -1,10 +1,5 @@
 function(input, output, session) {
 
-  # Initialize ####
-  # if (!dir.exists("outputDir")) {
-  #   dir.create("outputDir", showWarnings = FALSE)
-  # }
-
   # Load Server files ####
   files <- c(
     "loadData.R",
