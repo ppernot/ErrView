@@ -1,5 +1,8 @@
 version = 1.1
 
+# Increas max loading size to 30 Mo
+options(shiny.maxRequestSize=30*1024^2)
+
 source("R/packages.R")
 
 # Proportions of Side/Main Panels ####
