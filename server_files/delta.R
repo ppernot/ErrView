@@ -2,18 +2,31 @@ output$methodsDelta <- renderUI({
   if(is.null(input$dataFile))
     return(NULL)
 
+  meth1 = 1
+  meth2 = 2
+  # If possible, pick first method as reference (lowest MUE)
+  if(!is.null(bsList())) {
+    S = bsList()
+    if(!is.null(S$mue)) {
+      meth1 = which.min(S$mue$val)
+      if(meth1 == 2)
+        meth2 = 1
+    }
+  }
+
   tagList(
     selectInput(
       "selMethDelta1",
       label = "Choose Meth 1",
       choices = methList,
+      selected = methList[meth1],
       multiple = FALSE
     ),
     selectInput(
       "selMethDelta2",
       label = "Choose Meth 2",
       choices = methList,
-      selected = methList[2],
+      selected = methList[meth2],
       multiple = FALSE
     )
   )
