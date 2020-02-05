@@ -18,12 +18,13 @@ observe({
       type      = input$baType,
       show.main = FALSE,
       offset    = 0.8,
-      cex.lab   = 1,
+      cex.lab   = input$rankCexLab,
       M         = round(nrow(Errors)*bsR),
       gPars     = gPars)
 
   },
-  width  = round(plotWidth  * K()^0.5 / nomSize),
-  height = round(plotHeight * K()^0.5 / nomSize)
+  # Best with square plot, except for small matrices
+  width  = max(300,round(plotHeight * K()^0.5 / nomSize)),
+  height = max(200,round(plotHeight * K()^0.5 / nomSize))
   )
 })

@@ -28,6 +28,14 @@ sidebarLayout(
       "dendro",
       label = "Clustering",
       value = FALSE
+    ),
+    sliderInput(
+      "corCexLab",
+      label = "Label size",
+      min = 0,
+      max = 1,
+      value = 1,
+      step = 0.1
     )
     # sliderInput(
     #   "corMargin",

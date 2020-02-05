@@ -50,10 +50,16 @@ observe({
       cmat = S$q95hd$corr
     }
 
-    plotCorMat(X = cmat, order = order, gPars=gPars)
+    plotCorMat(
+      X = cmat,
+      order = order,
+      cex.lab = input$corCexLab,
+      gPars = gPars
+    )
 
   },
-  width  = round(plotWidth  * K()^0.5 / nomSize),
-  height = round(plotHeight * K()^0.5 / nomSize)
+  # Best with square plot, except for small matrices
+  width  = max(300,round(plotHeight * K()^0.5 / nomSize)),
+  height = max(200,round(plotHeight * K()^0.5 / nomSize))
   )
 })

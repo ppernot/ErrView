@@ -27,6 +27,14 @@ sidebarLayout(
       max = 1,
       value = 1,
       step = 0.1
+    ),
+    sliderInput(
+      "rankCexLab",
+      label = "Label size",
+      min = 0,
+      max = 1,
+      value = 1,
+      step = 0.1
     )
   ),
   mainPanel(
