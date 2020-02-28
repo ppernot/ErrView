@@ -25,9 +25,11 @@ To use your own data, create a .csv file with the following columns:
 
 1. Click on the `binder` badge above: this will open a Rstudio session in your browser
 
-2. Select `server.R` in the `Files`
+2. Select `server.R` in the `Files` panel of Rstudio
 
 3. Click on `Run App`
+
+4. Enjoy !
 
 If you want to use the predefined datasets, 
 you will have to download them first from
