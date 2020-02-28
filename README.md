@@ -23,6 +23,7 @@ To use your own data, create a .csv file with the following columns:
 
 [![Launch Rstudio Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ppernot/ErrView/master?urlpath=rstudio)
 
+<<<<<<< HEAD
 1. Click on the `binder` badge above: this will open a Rstudio session in your browser
 
 2. Select `server.R` in the `Files` panel of Rstudio
@@ -31,6 +32,14 @@ To use your own data, create a .csv file with the following columns:
 
 4. Enjoy !
 
+=======
+1. Click on the baddge: this will open a Rstudio session in your browser
+
+2. Select `server.R` in the `Files`
+
+3. Click on `Run App`
+
+>>>>>>> 29a34ca9db24cf89aa45c64721ea5df9fac0ec3f
 If you want to use the predefined datasets, 
 you will have to download them first from
 [here](https://github.com/ppernot/ErrView/tree/master/data).
