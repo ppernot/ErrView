@@ -19,6 +19,12 @@ To use your own data, create a .csv file with the following columns:
 * ...
 * "Mn" : results of the last method
 
+## Run it on the cloud
+
+Click on the badge
+
+[![Launch Rstudio Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ppernot/ErrView/master?urlpath=rstudio)
+
 ## Test before install
 
 A web interface to the code is also available online [here](http://upsa.shinyapps.io/ErrView).

@@ -1,0 +1,34 @@
+Type: Compendium
+Package: ErrView
+Title: Analysis of error sets
+Version: 0.0.1
+Authors@R: 
+    person(given = "Pascal",
+           family = "PERNOT",
+           role = c("aut", "cre"),
+           email = "pascal.pernot@universite-paris-saclay.fr",
+           comment = c(ORCID = "0000-0001-8586-6222"))
+Description: Analysis of error sets for computational chemistry benchmarks.
+License: What license it uses
+Depends: 
+    boot,
+    corrplot,
+    devtools,
+    distillery,
+    DT,
+    ErrViewLib,
+    fields,
+    Hmisc,
+    inlmisc,
+    mvtnorm,
+    rlist,
+    rsconnect,
+    shiny,
+    shinycssloaders,
+    shinyFiles,
+    shinythemes,
+    tools
+Remotes: 
+    ppernot/ErrViewLib
+Encoding: UTF-8
+LazyData: true
