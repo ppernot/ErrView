@@ -21,11 +21,22 @@ To use your own data, create a .csv file with the following columns:
 
 ## Run it on the cloud
 
-Click on the badge
-
 [![Launch Rstudio Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ppernot/ErrView/master?urlpath=rstudio)
+
+1. Click on the `binder` badge above: this will open a Rstudio session in your browser
+
+2. Select `server.R` in the `Files`
+
+3. Click on `Run App`
+
+If you want to use the predefined datasets, 
+you will have to download them first from
+[here](https://github.com/ppernot/ErrView/tree/master/data).
 
 ## Test before install
 
-A web interface to the code is also available online [here](http://upsa.shinyapps.io/ErrView).
+A web interface to the code is also available online 
+[here](http://upsa.shinyapps.io/ErrView).
+
+In thise case, the datasets are availble directly on the server.
 
