@@ -11,7 +11,10 @@ sidebarLayout(
         'Q95'  = 'q95',
         'Q95(HD)' = 'q95hd',
         'MSE'  = 'mse',
-        'RMSD' = 'rmsd'
+        'RMSD' = 'rmsd',
+        'Skew' = 'skew',
+        'Kurt' = 'kurt',
+        'W'    = 'W'
         ),
       selected = c('mue','q95hd','mse','rmsd')
     ),
