@@ -4,22 +4,19 @@ output$methodsHD <- renderUI({
 
   selectInput(
     "selMethHD",
-    label = "Choose a method",
+    label = "Method",
     choices = methList,
     multiple = FALSE
   )
 
 })
 output$plotHistDist <- renderPlot({
-  if(is.null(input$dataFile)) {
-    validate(
-      need(
-        !is.null(input$dataFile),
-        'Please choose a datafile !'
-      )
+  validate(
+    need(
+      !is.null(input$dataFile),
+      'Please choose a datafile !'
     )
-    return()
-  }
+  )
 
   if(!is.null(outSel()) &
      input$removeGlobOut) {

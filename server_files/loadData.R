@@ -17,14 +17,19 @@ output$selectMsg <- renderPrint({
     header=TRUE,
     stringsAsFactors = FALSE,
     check.names = FALSE)
-
-  systems  <<- data[,1]
+  systems <<- data[,1]
   rownames(data) = systems
-  Ref      <<- data[,2]
-  Data     <<- data[,-c(1,2)]
+  Ref <<- data[,2]
+  Data <<- data[,-c(1,2)]
+  if(ncol(data) == 3) {
+    # Single method in dataset: force df structure
+    df = data.frame(data[,-c(1,2)])
+    colnames(df) = colnames(data)[3]
+    rownames(df) = systems
+    Data <<- df
+  }
   methList <<- colnames(Data)
   K(length(methList)) # Dynamic size for graphics updates
-
   if(input$useRelative)
     Errors   <<- (Ref - Data)/Ref
   else
@@ -35,7 +40,7 @@ output$selectMsg <- renderPrint({
     dataUnits('')
 
   cat('Errors (first lines)\n')
-  print(head(signif(Errors,2),n=5))
+  print(head(signif(Errors,2), n = 5))
   cat('\n')
   cat('Systems  : ', length(systems),'\n')
   cat('Methods  : ', K(),'\n')

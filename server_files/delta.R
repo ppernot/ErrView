@@ -1,6 +1,8 @@
 output$methodsDelta <- renderUI({
   if(is.null(input$dataFile))
     return(NULL)
+  if(length(methList) < 2)
+    return(NULL)
 
   meth1 = 1
   meth2 = 2
@@ -33,16 +35,16 @@ output$methodsDelta <- renderUI({
 
 })
 output$plotDelta <- renderPlot({
-  if(is.null(input$dataFile)) {
-    validate(
-      need(
-        !is.null(input$dataFile),
-        'Please choose a datafile !'
-      )
+  validate(
+    need(
+      !is.null(input$dataFile),
+      'Please choose a datafile !'
+    ),
+    need(
+      length(methList) > 1,
+      'Requires more than one error set !'
     )
-    return()
-  }
-
+  )
   validate(
     need(
       input$selMethDelta1 != input$selMethDelta2,

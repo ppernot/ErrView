@@ -27,7 +27,7 @@ sidebarLayout(
     ),
     checkboxInput(
       'outHD',
-      label = 'Show Outliers',
+      label = 'Tag outliers',
       value = FALSE
     ),
     checkboxInput(

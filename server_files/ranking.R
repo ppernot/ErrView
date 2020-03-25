@@ -1,14 +1,15 @@
 observe({
   output$benchAuthority <- renderPlot({
-    if(is.null(input$dataFile)) {
-      validate(
-        need(
-          !is.null(input$dataFile),
-          'Please choose a datafile !'
-        )
+    validate(
+      need(
+        !is.null(input$dataFile),
+        'Please choose a datafile !'
+      ),
+      need(
+        K() > 1,
+        'Requires more than one error set !'
       )
-      return()
-    }
+    )
 
     bsR = input$bsSizeRatio
 

@@ -1,16 +1,17 @@
 observe({
   output$sipPlot <- renderPlot({
-    if(is.null(input$dataFile)) {
-      validate(
-        need(
-          !is.null(input$dataFile),
-          'Please choose a datafile !'
-        )
+    validate(
+      need(
+        !is.null(input$dataFile),
+        'Please choose a datafile !'
+      ),
+      need(
+        K() > 1,
+        'Requires more than one error set !'
       )
-      return()
-    }
+    )
 
-    if(is.null(bsList()) |
+     if(is.null(bsList()) |
        is.null(bsList()$sip)) {
       S = estBS1 (Errors,
                   props  = "mse",
