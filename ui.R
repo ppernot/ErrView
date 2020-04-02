@@ -28,6 +28,10 @@ function(request) {
       source_ui("histDist.R")
     ),
     tabPanel(
+      title = "QQ-Plot",
+      source_ui("qqPlot.R")
+    ),
+    tabPanel(
       title = "ECDFs",
       source_ui("ecdf.R")
     ),

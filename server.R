@@ -6,6 +6,7 @@ function(input, output, session) {
     "outliers.R",
     "stats.R",
     "histDist.R",
+    "qqPlot.R",
     "ecdf.R",
     "correl.R",
     "ranking.R",
