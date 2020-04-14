@@ -30,6 +30,9 @@ output$plotHistDist <- renderPlot({
 
   x = Data[ ,input$selMethHD]
   y = Errors[ ,input$selMethHD]
+  # Remove linear trend ?
+  if(input$untHD)
+    y = residuals(lm(y ~ x))
 
   nclass = input$nbClass
   if(nclass == 0)

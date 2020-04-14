@@ -16,6 +16,11 @@ sidebarLayout(
       value = FALSE
     ),
     checkboxInput(
+      'untHD',
+      label = 'Correct trend',
+      value = FALSE
+    ),
+    checkboxInput(
       'baHD',
       label = 'Bland-Altmann',
       value = TRUE
