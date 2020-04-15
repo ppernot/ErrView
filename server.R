@@ -11,7 +11,8 @@ function(input, output, session) {
     "correl.R",
     "ranking.R",
     "sip.R",
-    "delta.R"
+    "delta.R",
+    "UQ.R"
   )
 
   for (f in files)

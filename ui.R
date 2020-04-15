@@ -50,6 +50,10 @@ function(request) {
     tabPanel(
       title = "Delta |Err|",
       source_ui("delta.R")
+    ),
+    tabPanel(
+      title = "UQ",
+      source_ui("UQ.R")
     )
   )
 
