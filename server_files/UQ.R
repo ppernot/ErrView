@@ -13,6 +13,7 @@ plotUQ = function(
   main      = NULL,
   qrDegree  = 1, # Degree of polynomials
   qrMeth    = 'lasso', # default 'br'
+  qrFrac    = 0.8,
   xlim      = range(x),
   ylim      = range(y),
   scaleLegBA = 0.75,
@@ -126,7 +127,7 @@ plotUQ = function(
   sk = moments::skewness(y)
   ku = moments::kurtosis(y)
   legend(
-    'topleft', bty = 'o',
+    'topleft', bty = 'n',
     legend = '',
     title = paste0(
       'skew = ',signif(sk,2),'\n',
@@ -195,6 +196,52 @@ plotUQ = function(
     lty = c(2,1,2)
   )
 
+  # Local coverages
+  ns = 5
+  ls = floor(length(x)/ns)
+  sel = list()
+  for(i in 1:ns)
+    sel[[i]] = ((i-1)*ls+1):(i*ls)
+
+  # Prediction Interval Ratios
+
+  pirQR = c()
+  for(i in 1:ns)
+    pirQR[i] = 1/mean(
+      diff(quantile(y[sel[[i]]],c(0.025,0.975))) /
+        (pqreg[sel[[i]],3] - pqreg[sel[[i]],1]))
+
+  pir0 = c()
+  for(i in 1:ns)
+    pir0[i] = 1/mean(
+      diff(quantile(y[sel[[i]]],c(0.025,0.975))) /
+        (loas[2] - loas[1]))
+
+  for(i in 1:ns) {
+    icol = 6 + i%%2
+    rect(min(x[sel[[i]]]),
+         1.1*min(y),
+         max(x[sel[[i]]]),
+         1.1*max(y),
+         col = cols_tr[icol],
+         border=NA)
+    mtext(
+      signif(pir0[[i]],2),
+      side = 3,
+      cex  = 0.8,
+      col  = cols[2],
+      at   = mean(x[sel[[i]]])
+    )
+    mtext(
+      signif(pirQR[[i]],2),
+      side = 3,
+      cex  = 0.8,
+      col  = cols[4],
+      at   = mean(x[sel[[i]]]),
+      line = 1
+    )
+  }
+
   if (outLiers) {
     # Mark and label quantile-based outliers
     plow = (1 - p) / 2
@@ -249,18 +296,54 @@ plotUQ = function(
     line=0.25
   )
 
+  # QuantReg Validation
+  ## Split sample
+  N = length(x)
+  iTrain = sample(
+    1:N,
+    floor(qrFrac*N),
+    replace = FALSE
+  )
+  yt = y[iTrain]
+  xt = x[iTrain]
+
+  # Quantile regression
+  qreg = quantreg::rq(
+    qrFor,
+    method = qrMeth,
+    data = data.frame(
+      x = xt,
+      y = yt
+    ),
+    tau = c(0.025,0.5,0.975)
+  )
+
+  # Validation
+  xv = x[-iTrain]
+  yv = y[-iTrain]
+
+  pqreg = predict(
+    qreg,
+    newdata = data.frame(x=xv)
+  )
+
+  # Percentage of validation data between quantiles
+  pv = mean(
+    (pqreg[,3]-yv) * (pqreg[,1]-yv) <= 0
+  )
 
   # Infos
   p_score = olsrr::ols_test_score(reg)$p
   legend('topleft',
          title = paste0(
            main,'\n',
-           'p(homosc.) = ',signif(p_score,2)
+           'p(homosc.) = ',signif(p_score,2),'\n',
+           'P95 = ',signif(pv,2)
          ),
          title.col = cols[3],
-         inset = 0.05,
+         inset = 0.1,
          title.adj = 0,
-         bty = 'o', box.col = NA, bg = 'white',
+         bty = 'n', #box.col = NA, bg = 'white',
          legend = '')
   box()
 }
