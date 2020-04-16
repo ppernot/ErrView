@@ -11,22 +11,51 @@ sidebarLayout(
       value = FALSE
     ),
     checkboxInput(
-      'unifxUQ',
-      label = 'Uniformize abscissa',
-      value = FALSE
-    ),
-    checkboxInput(
       'untUQ',
       label = 'Correct trend',
       value = FALSE
     ),
-    sliderInput(
-      'untDegree',
-      label = 'Trend degree',
-      value = 1,
-      min = 0,
-      max = 4,
-      step = 1
+    fixedRow(
+      column(
+        width = 6,
+        numericInput(
+          'untDegree',
+          label = 'Trend degree',
+          value = 1,
+          min = 0,
+          max = 4,
+          step = 1,
+          width = '100px'
+        )
+      ),
+      column(
+        width = 6,
+        numericInput(
+          'qrDegree',
+          label = 'QReg degree',
+          value = 2,
+          min = 0,
+          max = 4,
+          step = 1,
+          width = '100px'
+        )
+      )
+    ),
+    radioButtons(
+      'qrMeth',
+      label = 'QReg method',
+      inline = TRUE,
+      choices = c(
+        'br' = 'br',
+        'lasso' = 'lasso'
+      ),
+      selected = 'lasso'
+    ),
+
+    checkboxInput(
+      'unifxUQ',
+      label = 'Uniformize abscissa',
+      value = FALSE
     ),
     checkboxInput(
       'outUQ',

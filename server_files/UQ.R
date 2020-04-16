@@ -14,6 +14,7 @@ plotUQ = function(
   qrDegree  = 1, # Degree of polynomials
   qrMeth    = 'lasso', # default 'br'
   qrFrac    = 0.8,
+  nVal      = 100,
   xlim      = range(x),
   ylim      = range(y),
   scaleLegBA = 0.75,
@@ -126,16 +127,18 @@ plotUQ = function(
 
   sk = moments::skewness(y)
   ku = moments::kurtosis(y)
+  sig = sd(y)
   legend(
     'topleft', bty = 'n',
     legend = '',
     title = paste0(
+      'sd   = ',signif(sig,2),'\n',
       'skew = ',signif(sk,2),'\n',
       'kurt = ',signif(ku,2),'\n',
       'CI95 = [',signif(loas[1],2),', ',signif(loas[2],2),']'
       ),
     title.col= cols[3],
-    inset = 0.1, box.col = NA, bg = 'white',
+    inset = 0.125, box.col = NA, bg = 'white',
     title.adj = 0
   )
   box()
@@ -299,38 +302,42 @@ plotUQ = function(
   # QuantReg Validation
   ## Split sample
   N = length(x)
-  iTrain = sample(
-    1:N,
-    floor(qrFrac*N),
-    replace = FALSE
-  )
-  yt = y[iTrain]
-  xt = x[iTrain]
+  pv = c()
+  for(i in 1:nVal) {
+    iTrain = sample(
+      1:N,
+      floor(qrFrac*N),
+      replace = FALSE
+    )
+    yt = y[iTrain]
+    xt = x[iTrain]
 
-  # Quantile regression
-  qreg = quantreg::rq(
-    qrFor,
-    method = qrMeth,
-    data = data.frame(
-      x = xt,
-      y = yt
-    ),
-    tau = c(0.025,0.5,0.975)
-  )
+    # Quantile regression
+    qreg = quantreg::rq(
+      qrFor,
+      method = qrMeth,
+      data = data.frame(
+        x = xt,
+        y = yt
+      ),
+      tau = c(0.025,0.975)
+    )
 
-  # Validation
-  xv = x[-iTrain]
-  yv = y[-iTrain]
+    # Validation
+    xv = x[-iTrain]
+    yv = y[-iTrain]
 
-  pqreg = predict(
-    qreg,
-    newdata = data.frame(x=xv)
-  )
+    pqreg = predict(
+      qreg,
+      newdata = data.frame(x=xv)
+    )
 
-  # Percentage of validation data between quantiles
-  pv = mean(
-    (pqreg[,3]-yv) * (pqreg[,1]-yv) <= 0
-  )
+    # Percentage of validation data between quantiles
+    pv[i] = mean(
+      (pqreg[,2]-yv) * (pqreg[,1]-yv) <= 0
+    )
+  }
+  pvm = mean(pv)
 
   # Infos
   p_score = olsrr::ols_test_score(reg)$p
@@ -338,7 +345,7 @@ plotUQ = function(
          title = paste0(
            main,'\n',
            'p(homosc.) = ',signif(p_score,2),'\n',
-           'P95 = ',signif(pv,2)
+           'P95 = ',signif(pvm,2)
          ),
          title.col = cols[3],
          inset = 0.1,
@@ -408,20 +415,19 @@ output$plotUQ <- renderPlot({
   plotUQ(
     x [indx], y[indx],
     uy        = NULL,
-    nclass    = nclass,       # Nb class for histogram
+    nclass    = nclass, # Nb class for histogram
     xlab      = xlab,
     ylab      = paste0('Errors [',dataUnits(),']'),
     plotGauss = TRUE, # Plot Gaussian fit of hist.
-    outLiers  = input$outUQ,  # Mark outliers
-    p         = 0.95,         # Width of proba interval to detect outliers
+    outLiers  = input$outUQ, # Mark outliers
+    p         = 0.95, # Width of interval to detect outliers
     labels    = systems[indx],
-    select    = NULL,         # Indices of points to colorize
+    select    = NULL, # Indices of points to colorize
     main      = input$selMethUQ,
-    qrDegree  = input$untDegree, # Degree of polynomials
-    qrMeth    = 'lasso', # default 'br'
-    xlim      = c(min(x),1.1*max(x)),# Leave space for labels
+    qrDegree  = input$qrDegree, # Degree of polynomials
+    qrMeth    = input$qrMeth ,
+    xlim      = c(min(x),1.1*max(x)),
     ylim      = range(y),
-    scaleLegBA= 1,
     gPars     = gpLoc
   )
 },
