@@ -18,7 +18,7 @@ observe({
 
     # Calculate or load rank table
     if( M == nrow(Errors) ) {
-      if(is.na(rankMat[[score]]$bs)) {
+      if(any(is.na(rankMat[[score]]$bs))) {
         tab = rankBS(Errors, score, nMC)
         rankMat[[score]]$bs <<- tab
       } else {

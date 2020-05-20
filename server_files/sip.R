@@ -34,6 +34,7 @@ observe({
 
     plotSIPMat(
       S$sip,
+      cex.lab = input$sipCexLab,
       gPars = gPars)
 
   },
