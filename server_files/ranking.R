@@ -11,16 +11,38 @@ observe({
       )
     )
 
-    bsR = input$bsSizeRatio
+    nMC   = 1000
+    bsR   = input$bsSizeRatio
+    M     = round(nrow(Errors)*bsR)
+    score = input$stat
+
+    # Calculate or load rank table
+    if( M == nrow(Errors) ) {
+      if(is.na(rankMat[[score]]$bs)) {
+        tab = rankBS(Errors, score, nMC)
+        rankMat[[score]]$bs <<- tab
+      } else {
+        tab = rankMat[[score]]$bs
+      }
+    } else {
+      # Do not save, as M can vary
+      # if(is.na(rankMat[[score]]$bs2)) {
+        tab = rankBS2(Errors, score, nMC, M)
+        # rankMat[[score]]$bs2 <<- tab
+      # } else {
+        # tab = rankMat[[score]]$bs2
+      # }
+    }
 
     plotRankMat(
       E         = Errors,
-      score     = input$stat,
+      tab       = tab,
+      score     = score,
       type      = input$baType,
       show.main = FALSE,
       offset    = 0.8,
       cex.lab   = input$rankCexLab,
-      M         = round(nrow(Errors)*bsR),
+      M         = M,
       gPars     = gPars)
 
   },

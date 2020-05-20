@@ -47,7 +47,10 @@ output$selectMsg <- renderPrint({
   cat('Methods  : ', K(),'\n')
   cat('Units    : ', dataUnits(),'\n')
 
+  # [Re]init misc global variables and reactive values
   bsList(NULL)
+  lna = list(bs = NA, bs2 = NA)
+  rankMat <<- list(mue = lna, q95hd = lna, msip = lna)
 
 })
 
