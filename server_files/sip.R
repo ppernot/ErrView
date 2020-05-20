@@ -11,13 +11,24 @@ observe({
       )
     )
 
-     if(is.null(bsList()) |
-       is.null(bsList()$sip)) {
+    if(is.null(bsList())) {
+      # Populate bsList
       S = estBS1 (Errors,
                   props  = "mse",
                   do.sip = TRUE,
                   silent = TRUE)
+      bsList(S)
+    } else if(is.null(bsList()$sip)) {
+      # Update bsList
+      S = bsList()
+      S0 = estBS1 (Errors,
+                  props  = "mse",
+                  do.sip = TRUE,
+                  silent = TRUE)
+      S$sip = S0$sip
+      bsList(S)
     } else {
+      # Load bsList
       S = bsList()
     }
 
