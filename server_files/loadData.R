@@ -1,5 +1,6 @@
 K <- reactiveVal(1)
 dataUnits <- reactiveVal()
+bsList <- reactiveVal()
 output$selectMsg <- renderPrint({
   if(is.null(input$dataFile)) {
     cat('Expected datafile format (.csv):\n\n')
@@ -45,6 +46,8 @@ output$selectMsg <- renderPrint({
   cat('Systems  : ', length(systems),'\n')
   cat('Methods  : ', K(),'\n')
   cat('Units    : ', dataUnits(),'\n')
+
+  bsList(NULL)
 
 })
 

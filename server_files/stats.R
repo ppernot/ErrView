@@ -1,4 +1,3 @@
-bsList <- reactiveVal()
 observeEvent(
   input$genStats, {
     # Remove outliers,if any
@@ -18,7 +17,7 @@ observeEvent(
 )
 output$outStatsMsg <- renderPrint({
   if(is.null(bsList()))
-    return(cat(' Please select stats, \n click on Generate \n and wait...'))
+    return(cat(' Please select desired stats, \n click on Generate \n and wait...'))
 
   bs = bsList()
   outliers = bs$outliers
