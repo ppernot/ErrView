@@ -10,12 +10,15 @@ sidebarLayout(
       label = 'Remove glob. outl.',
       value = FALSE
     ),
-    checkboxInput(
-      'untUQ',
-      label = 'Correct trend',
-      value = FALSE
-    ),
     fixedRow(
+      column(
+        width = 6,
+        checkboxInput(
+          'untUQ',
+          label = 'Correct trend',
+          value = FALSE
+        )
+      ),
       column(
         width = 6,
         numericInput(
@@ -26,6 +29,21 @@ sidebarLayout(
           max = 4,
           step = 1,
           width = '100px'
+        )
+      )
+    ),
+    fixedRow(
+      column(
+        width = 6,
+        radioButtons(
+          'qrMeth',
+          label = 'QReg method',
+          inline = TRUE,
+          choices = c(
+            'br'    = 'br',
+            'lasso' = 'lasso'
+          ),
+          selected = 'lasso'
         )
       ),
       column(
@@ -41,17 +59,28 @@ sidebarLayout(
         )
       )
     ),
-    radioButtons(
-      'qrMeth',
-      label = 'QReg method',
-      inline = TRUE,
-      choices = c(
-        'br' = 'br',
-        'lasso' = 'lasso'
+    fixedRow(
+      column(
+        width = 6,
+        checkboxInput(
+          'qLoc',
+          label = 'Local quantiles',
+          value = FALSE
+        )
       ),
-      selected = 'lasso'
+      column(
+        width = 6,
+        numericInput(
+          'nbSubsets',
+          label = '# subsets',
+          value = 5,
+          min = 1,
+          max = 10,
+          step = 1,
+          width = '100px'
+        )
+      )
     ),
-
     checkboxInput(
       'unifxUQ',
       label = 'Uniformize abscissa',
@@ -74,6 +103,8 @@ sidebarLayout(
   ),
   mainPanel(
     width = mainWidth,
-    plotOutput("plotUQ")
+    plotOutput(
+      "plotUQ"
+    )
   )
 )

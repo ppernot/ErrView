@@ -14,6 +14,8 @@ plotUQ = function(
   qrDegree  = 1, # Degree of polynomials
   qrMeth    = 'lasso', # default 'br'
   qrFrac    = 0.8,
+  qLoc      = FALSE,
+  nbSubsets = 5,
   nVal      = 100,
   xlim      = range(x),
   ylim      = range(y),
@@ -177,71 +179,111 @@ plotUQ = function(
 
   abline(h = 0, lty = 3)
 
-  # Quantile regression
-  qrFor = y ~ 1
-  if(qrDegree > 0)
+  # Subsets for local coverages and local quantiles
+  ns = nbSubsets
+  ls = floor(length(x)/ns)
+  sel = list()
+  for(i in 1:ns){
+    sel[[i]] = ((i-1)*ls+1):(i*ls)
+    icol = 6 + i%%2
+    rect(min(x[sel[[i]]]),
+         min(y)*ifelse(min(y)>0, 0.9, 1.1),
+         max(x[sel[[i]]]),
+         max(y)*ifelse(max(y)>0, 1.1, 0.9),
+         col = cols_tr[icol],
+         border=NA)
+  }
+
+  if(qrDegree > 0) { # 0 falls back to loas
+    # Quantile regression
     qrFor = as.formula(
       paste0('y ~ 1 + ',
              paste0('I(x^',1:qrDegree,')',
                     collapse = '+')
       )
     )
-  qreg = quantreg::rq(
-    qrFor,
-    method = qrMeth,
-    tau = c(0.025,0.5,0.975)
-  )
-  pqreg = predict(qreg)
-  matlines(
-    x, pqreg,
-    col = cols[4],
-    lwd = 3,
-    lty = c(2,1,2)
-  )
+    qreg = quantreg::rq(
+      qrFor,
+      method = qrMeth,
+      tau = c(0.025,0.5,0.975)
+    )
+    pqreg = predict(qreg)
+    matlines(
+      x, pqreg,
+      col = cols[4],
+      lwd = 3,
+      lty = c(2,1,2)
+    )
+    # Prediction Interval Ratios
+    pirQR = c()
+    for(i in 1:ns){
+      pirQR[i] = 1/mean(
+        diff(quantile(y[sel[[i]]],c(0.025,0.975))) /
+          (pqreg[sel[[i]],3] - pqreg[sel[[i]],1]))
+      mtext(
+        signif(pirQR[i],2),
+        side = 3,
+        cex  = 0.8,
+        col  = cols[4],
+        at   = mean(x[sel[[i]]]),
+        line = 1
+      )
+    }
+  }
 
-  # Local coverages
-  ns = 5
-  ls = floor(length(x)/ns)
-  sel = list()
-  for(i in 1:ns)
-    sel[[i]] = ((i-1)*ls+1):(i*ls)
+  if(qLoc) {
+    # Local quantiles
+    qloc = matrix(NA, nrow=ns, ncol=2)
+    for(i in 1:ns) {
+      xlim = range(x[sel[[i]]])
+      polygonXlimits = c(xlim, rev(xlim))
+      q = function(x,i) ErrViewLib::hd(x[i],0.025)
+      loas.boot = boot::boot(
+        y[sel[[i]]], q,
+        stype='i', R=500)
+      # loas.ci = boot::boot.ci(
+      #   loas.boot,
+      #   conf = 0.95,
+      #   type = "perc")
+      # ci = loas.ci$percent[4:5]
+      ci = quantile(loas.boot$t[,1],c(0.025,0.975))
+      polygon(polygonXlimits,
+              c(ci[1],ci[1],ci[2],ci[2]),
+              col = cols_tr[2], border = NA)
+      lmed = mean(loas.boot$t[,1])
+      segments(xlim[1],lmed,xlim[2],lmed,
+               lty = 2, col = cols[2])
+      q = function(x,i) ErrViewLib::hd(x[i],0.975)
+      loas.boot = boot::boot(
+        y[sel[[i]]], q,
+        stype='i', R=500)
+      # loas.ci   = boot::boot.ci(
+      #   loas.boot,
+      #   conf=0.95,
+      #   type="perc")
+      # ci = loas.ci$percent[4:5]
+      ci = quantile(loas.boot$t[,1],c(0.025,0.975))
+      polygon(polygonXlimits,
+              c(ci[1],ci[1],ci[2],ci[2]),
+              col = cols_tr[2], border = NA)
+      lmed = mean(loas.boot$t[,1])
+      segments(xlim[1],lmed,xlim[2],lmed,
+               lty = 2, col = cols[2])
+    }
+  }
 
-  # Prediction Interval Ratios
-
-  pirQR = c()
-  for(i in 1:ns)
-    pirQR[i] = 1/mean(
-      diff(quantile(y[sel[[i]]],c(0.025,0.975))) /
-        (pqreg[sel[[i]],3] - pqreg[sel[[i]],1]))
-
+  # Local coverage by loas
   pir0 = c()
-  for(i in 1:ns)
+  for(i in 1:ns){
     pir0[i] = 1/mean(
       diff(quantile(y[sel[[i]]],c(0.025,0.975))) /
         (loas[2] - loas[1]))
-
-  for(i in 1:ns) {
-    icol = 6 + i%%2
-    rect(min(x[sel[[i]]]),
-         1.1*min(y),
-         max(x[sel[[i]]]),
-         1.1*max(y),
-         col = cols_tr[icol],
-         border=NA)
     mtext(
       signif(pir0[[i]],2),
       side = 3,
       cex  = 0.8,
       col  = cols[2],
       at   = mean(x[sel[[i]]])
-    )
-    mtext(
-      signif(pirQR[[i]],2),
-      side = 3,
-      cex  = 0.8,
-      col  = cols[4],
-      at   = mean(x[sel[[i]]]),
-      line = 1
     )
   }
 
@@ -299,59 +341,70 @@ plotUQ = function(
     line=0.25
   )
 
-  # QuantReg Validation
-  ## Split sample
-  N = length(x)
-  pv = c()
-  for(i in 1:nVal) {
-    iTrain = sample(
-      1:N,
-      floor(qrFrac*N),
-      replace = FALSE
-    )
-    yt = y[iTrain]
-    xt = x[iTrain]
+  pvm = NULL
+  if(qrDegree > 0) {
+    # QuantReg Validation
+    ## Split sample
+    N = length(x)
+    pv = c()
+    for(i in 1:nVal) {
+      iTrain = sample(
+        1:N,
+        floor(qrFrac*N),
+        replace = FALSE
+      )
+      yt = y[iTrain]
+      xt = x[iTrain]
 
-    # Quantile regression
-    qreg = quantreg::rq(
-      qrFor,
-      method = qrMeth,
-      data = data.frame(
-        x = xt,
-        y = yt
-      ),
-      tau = c(0.025,0.975)
-    )
+      # Quantile regression
+      qreg = quantreg::rq(
+        qrFor,
+        method = qrMeth,
+        data = data.frame(
+          x = xt,
+          y = yt
+        ),
+        tau = c(0.025,0.975)
+      )
 
-    # Validation
-    xv = x[-iTrain]
-    yv = y[-iTrain]
+      # Validation
+      xv = x[-iTrain]
+      yv = y[-iTrain]
 
-    pqreg = predict(
-      qreg,
-      newdata = data.frame(x=xv)
-    )
+      pqreg = predict(
+        qreg,
+        newdata = data.frame(x=xv)
+      )
 
-    # Percentage of validation data between quantiles
-    pv[i] = mean(
-      (pqreg[,2]-yv) * (pqreg[,1]-yv) <= 0
-    )
+      # Percentage of validation data between quantiles
+      pv[i] = mean(
+        (pqreg[,2]-yv) * (pqreg[,1]-yv) <= 0
+      )
+    }
+    pvm = mean(pv)
   }
-  pvm = mean(pv)
 
   # Infos
-  p_score = olsrr::ols_test_score(reg)$p
-  legend('topleft',
-         title = paste0(
-           main,'\n',
-           'p(homosc.) = ',signif(p_score,2),'\n',
-           'P95 = ',signif(pvm,2)
-         ),
-         title.col = cols[3],
-         inset = 0.1,
-         title.adj = 0,
-         bty = 'n', #box.col = NA, bg = 'white',
-         legend = '')
+  # p_score = olsrr::ols_test_breusch_pagan(reg)$p
+  p_score = lmtest::hmctest(reg)$p.value
+  p95 = ifelse(
+    is.null(pvm),
+    '',
+    paste0('P95 = ', signif(pvm,2))
+  )
+  legend(
+    'topleft',
+    title = paste0(
+      main, '\n',
+      'p(homosc.) = ', signif(p_score,2), '\n',
+      p95
+    ),
+    title.col = cols[3],
+    inset = 0.1,
+    title.adj = 0,
+    bty = 'n', #box.col = NA, bg = 'white',
+    legend = ''
+  )
   box()
 }
 output$methodsUQ <- renderUI({
@@ -392,7 +445,7 @@ output$plotUQ <- renderPlot({
     xlab = paste0('pnorm(scale(Data [',dataUnits(),']))')
   }
 
-  y = Errors[ ,input$selMethUQ]
+  y = Errors[, input$selMethUQ]
   # Remove trend in errors
   if(input$untUQ) {
     fo = y ~ 1
@@ -406,14 +459,13 @@ output$plotUQ <- renderPlot({
     untReg = lm(fo)
     y = residuals(untReg)
   }
-
   nclass = input$nbClassUQ
   if(nclass == 0)
     nclass = nclass.Sturges(y)
 
   indx = order(x) # Order for clean line plots
   plotUQ(
-    x [indx], y[indx],
+    x[indx], y[indx],
     uy        = NULL,
     nclass    = nclass, # Nb class for histogram
     xlab      = xlab,
@@ -426,6 +478,8 @@ output$plotUQ <- renderPlot({
     main      = input$selMethUQ,
     qrDegree  = input$qrDegree, # Degree of polynomials
     qrMeth    = input$qrMeth ,
+    qLoc      = input$qLoc ,
+    nbSubsets = input$nbSubsets,
     xlim      = c(min(x),1.1*max(x)),
     ylim      = range(y),
     gPars     = gpLoc
