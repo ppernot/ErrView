@@ -34,6 +34,7 @@ output$methodsDelta <- renderUI({
   )
 
 })
+rangesDelta <- reactiveValues(x = NULL, y = NULL)
 output$plotDelta <- renderPlot({
   validate(
     need(
@@ -59,12 +60,21 @@ output$plotDelta <- renderPlot({
   gpLoc$mar = c(3, 3, 1.5, 1)
   gpLoc$pty = 'm'
 
+  if (is.null(rangesDelta$x)) {
+    xmin = NULL
+    xmax = NULL
+  } else {
+    xmin = rangesDelta$x[1]
+    xmax = rangesDelta$x[2]
+  }
+
   ErrViewLib::plotDeltaCDF(
     Errors,
     input$selMethDelta1,
     input$selMethDelta2,
     eps   = NULL,
-    xmax  = NULL,
+    xmin  = xmin,
+    xmax  = xmax,
     xlab  = NULL,
     units = dataUnits(),
     main  = '',
@@ -74,3 +84,14 @@ output$plotDelta <- renderPlot({
   )
 },
 width = plotWidth, height = plotHeight)
+
+observeEvent(input$Delta_dblclick, {
+  brush <- input$Delta_brush
+  if (!is.null(brush)) {
+    rangesDelta$x <- c(brush$xmin, brush$xmax)
+    rangesDelta$y <- c(brush$ymin, brush$ymax)
+  } else {
+    rangesDelta$x <- NULL
+    rangesDelta$y <- NULL
+  }
+})

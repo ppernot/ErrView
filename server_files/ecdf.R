@@ -11,6 +11,7 @@ output$methodsEcdf <- renderUI({
   )
 
 })
+rangesECDF <- reactiveValues(x = NULL, y = NULL)
 output$plotECDF <- renderPlot({
   if(is.null(input$dataFile)) {
     validate(
@@ -34,10 +35,20 @@ output$plotECDF <- renderPlot({
   gpLoc$pty      = 'm'
 
   X = abs(Errors[ ,input$selMethEcdf])
+
+  if (is.null(rangesECDF$x)) {
+    xmin = 0
+    xmax = max(X)
+  } else {
+    xmin = rangesECDF$x[1]
+    xmax = rangesECDF$x[2]
+  }
+
   plotUncEcdf(
     X,
     xlab      = NULL,
-    xmax      = max(X)*input$scaleEcdf,
+    xmin      = 0,
+    xmax      = xmax,
     title     = '',
     show.leg  = TRUE,
     show.MAE  = input$showMUE,
@@ -51,3 +62,14 @@ output$plotECDF <- renderPlot({
     gPars     = gpLoc)
 },
 width = plotWidth, height = plotHeight)
+
+observeEvent(input$ECDF_dblclick, {
+  brush <- input$ECDF_brush
+  if (!is.null(brush)) {
+    rangesECDF$x <- c(brush$xmin, brush$xmax)
+    rangesECDF$y <- c(brush$ymin, brush$ymax)
+  } else {
+    rangesECDF$x <- NULL
+    rangesECDF$y <- NULL
+  }
+})

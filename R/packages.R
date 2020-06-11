@@ -8,8 +8,8 @@ options(
 
 # CRAN Libraries ####
 libs <- c(
-  "devtools", "Hmisc", "rlist", "boot",
-  "shiny", "shinyFiles", #"shinyBS", "shinycssloaders",
+  "devtools", "Hmisc", "rlist", "boot", "lmtest",
+  "shiny", "shinyFiles",
   "DT", "tools", "inlmisc", "distillery"
 )
 for (lib in libs) {

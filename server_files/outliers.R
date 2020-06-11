@@ -1,4 +1,15 @@
 outSel <- reactiveVal()
+rangesOutliers <- reactiveValues(x = NULL, y = NULL)
+observeEvent(input$outliers_dblclick, {
+  brush <- input$outliers_brush
+  if (!is.null(brush)) {
+    rangesOutliers$x <- c(brush$xmin, brush$xmax)
+    rangesOutliers$y <- c(brush$ymin, brush$ymax)
+  } else {
+    rangesOutliers$x <- NULL
+    rangesOutliers$y <- NULL
+  }
+})
 observe({
   output$outliersPlot <- renderPlot({
     validate(
@@ -25,8 +36,23 @@ observe({
 
     gpLoc = gPars
     gpLoc$pty = 'm'
+
+    if (is.null(rangesOutliers$x)) {
+      xlim = NULL
+    } else {
+      xlim = rangesOutliers$x
+    }
+
+    if (is.null(rangesOutliers$y)) {
+      ylim = NULL
+    } else {
+      ylim = rangesOutliers$y
+    }
+
     out = ErrViewLib::plotParallel(
       X,
+      xlim = xlim,
+      ylim = ylim,
       rescale  = input$scaleParaPlot,
       scramble = input$scrambleParaPlot,
       labels   = labels,
@@ -43,3 +69,5 @@ observe({
   height = plotHeight
   )
 })
+
+

@@ -18,7 +18,7 @@ sidebarLayout(
     ),
     checkboxInput(
       "scrambleParaPlot",
-      label = "Scramble X",
+      label = "Scramble points",
       value = FALSE
     ),
     checkboxInput(
@@ -41,10 +41,12 @@ sidebarLayout(
     width = mainWidth,
     plotOutput(
       "outliersPlot",
-      inline = TRUE
+      # inline = TRUE,
+      dblclick = "outliers_dblclick",
+      brush = brushOpts(
+        id = "outliers_brush",
+        resetOnNew = TRUE
+      )
     )
-    # parcoordsOutput(
-    #   "outliersPlot"
-    # )
   )
 )
