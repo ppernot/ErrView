@@ -80,6 +80,10 @@ output$plotDelta <- renderPlot({
     main  = '',
     nboot = 1000,
     label = 0,
+    showSIP  = input$showSIP,
+    showMLG  = input$showMLG,
+    showDmue = input$showDmue,
+    showCI = input$showCI,
     gPars     = gpLoc
   )
 },

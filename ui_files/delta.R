@@ -3,16 +3,28 @@ sidebarLayout(
     width = sideWidth,
     h4("Delta CDF of |Err|"),
     hr( style="border-color: #666;"),
-    uiOutput("methodsDelta")#,
-    # hr( style="border-color: #666;"),
-    # sliderInput(
-    #   "scaleDelta",
-    #   label = "Scale X axis",
-    #   min = 0,
-    #   max = 1,
-    #   step = 0.1,
-    #   value = 1
-    # )
+    uiOutput("methodsDelta"),
+    hr( style="border-color: #666;"),
+    checkboxInput(
+      'showSIP',
+      label = 'SIP',
+      value = TRUE
+    ),
+    checkboxInput(
+      'showMLG',
+      label = 'ML & MG',
+      value = TRUE
+    ),
+    checkboxInput(
+      'showDmue',
+      label = 'Delta MUE',
+      value = TRUE
+    ),
+    checkboxInput(
+      'showCI',
+      label = '95 % CIs',
+      value = TRUE
+    )
   ),
   mainPanel(
     width = mainWidth,
