@@ -2,7 +2,7 @@
 
 # ErrView: Error sets viewer and comparator
 
-Implements methods from article "_Probabilistic performance estimators for computational chemistry methods: Systematic Improvement Probability and  Ranking Probability Matrix_" by P. Pernot and A. Savin
+Implements methods from article "_Probabilistic performance estimators for computational chemistry methods: Systematic Improvement Probability and  Ranking Probability Matrix. I. Theory_" by P. Pernot and A. Savin  (2020) [_J. Chem. Phys._ __152__:164108.](http://dx.doi.org/10.1063/5.0006202). Please cite this article if you use the code.
 
 + rank inversion probability
 + ranking uncertainty matrix
