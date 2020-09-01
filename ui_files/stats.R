@@ -7,14 +7,15 @@ sidebarLayout(
       "statsChoice",
       label = "Choose stats:",
       choices = list(
-        'MUE'  = 'mue',
-        'Q95'  = 'q95',
+        'MUE'     = 'mue',
+        'Q95'     = 'q95',
         'Q95(HD)' = 'q95hd',
-        'MSE'  = 'mse',
-        'RMSD' = 'rmsd',
-        'Skew' = 'skew',
-        'Kurt' = 'kurt',
-        'W'    = 'W'
+        'MSE'     = 'mse',
+        'RMSD'    = 'rmsd',
+        'MAD_SD'  = 'mad_sd',
+        'Skew'    = 'skew',
+        'Kurt'    = 'kurt',
+        'W'       = 'W'
         ),
       selected = c('mue','q95hd','mse','rmsd')
     ),
