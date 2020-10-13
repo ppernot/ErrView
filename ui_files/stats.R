@@ -15,7 +15,9 @@ sidebarLayout(
         'MAD_SD'  = 'mad_sd',
         'Skew'    = 'skew',
         'Kurt'    = 'kurt',
-        'W'       = 'W'
+        'W'       = 'W',
+        'Gini'    = 'gini',
+        'LAC'     = 'lasym'
         ),
       selected = c('mue','q95hd','mse','rmsd')
     ),

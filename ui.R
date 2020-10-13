@@ -36,6 +36,10 @@ function(request) {
       source_ui("ecdf.R")
     ),
     tabPanel(
+      title = "Lorenz",
+      source_ui("lorenz.R")
+    ),
+    tabPanel(
       title = "Correlations",
       source_ui("correl.R")
     ),

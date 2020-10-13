@@ -7,38 +7,39 @@ options(
 )
 
 # CRAN Libraries ####
-libs <- c(
-  "devtools", "Hmisc", "rlist", "boot", "lmtest",
-  "shiny", "shinyFiles",
-  "DT", "tools", "inlmisc", "distillery"
-)
-for (lib in libs) {
-  if (!require(lib, character.only = TRUE, quietly = TRUE)) {
-    install.packages(
-      lib,
-      dependencies = TRUE #,
-      # repos = "https://cran.univ-paris1.fr"
-    )
-    library(lib, character.only = TRUE, quietly = TRUE)
-  }
-}
-lib = "ErrViewLib"
-if(!require(lib,character.only = TRUE))
-  devtools::install_github(paste0("ppernot/",lib))
-library(lib,character.only = TRUE)
+# libs <- c(
+#   "devtools", "Hmisc", "rlist", "boot", "lmtest",
+#   "shiny", "shinyFiles",
+#   "DT", "tools", "inlmisc", "distillery", "ineq"
+# )
+# for (lib in libs) {
+#   if (!require(lib, character.only = TRUE, quietly = TRUE)) {
+#     install.packages(
+#       lib,
+#       dependencies = TRUE #,
+#       # repos = "https://cran.univ-paris1.fr"
+#     )
+#     library(lib, character.only = TRUE, quietly = TRUE)
+#   }
+# }
+# lib = "ErrViewLib"
+# if(!require(lib,character.only = TRUE))
+  # devtools::install_github(paste0("ppernot/",lib))
+# library(lib,character.only = TRUE)
 
 # # For Shinyio.apps
-# library(devtools)
-# library(Hmisc)
-# library(rlist)
-# library(shiny)
-# library(shinyFiles)
-# library(shinycssloaders)
-# library(DT)
-# library(tools)
-# library(inlmisc)
-# library(boot)
-# library(distillery)
-# library(ErrViewLib)
+library(devtools)
+library(Hmisc)
+library(rlist)
+library(shiny)
+library(shinyFiles)
+library(shinycssloaders)
+library(DT)
+library(tools)
+library(inlmisc)
+library(boot)
+library(distillery)
+library(ErrViewLib)
+library(ineq)
 
 
