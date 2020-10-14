@@ -7,7 +7,7 @@ output$methodsLorenz <- renderUI({
     label = "Choose methods",
     choiceNames = methList,
     choiceValues = methList,
-    selected = methList[1]
+    selected = methList
   )
 
 })
@@ -23,8 +23,10 @@ output$plotLorenz <- renderPlot({
     return()
   }
 
-  if(!is.null(outSel()))
+  if(!is.null(outSel())) {
     Errors = Errors[ !outSel(), ]
+    Data   = Data[ !outSel(), ]
+  }
 
   # Local set of colors
   nMeth = length(methList)
@@ -32,22 +34,40 @@ output$plotLorenz <- renderPlot({
   gpLoc$cols  = rev(inlmisc::GetColors(nMeth+1))[1:nMeth]
   gpLoc$pty   = 's'
 
-  X = Errors[ ,input$selMethLorenz, drop = FALSE]
+  Errors = Errors[ ,input$selMethLorenz, drop = FALSE]
+  Data   = Data[ ,input$selMethLorenz, drop = FALSE]
 
-  if(input$lorenzCenter)
-    if(class(X)== "numeric")
-      X = scale(X, scale=FALSE)
-    else
-      X = apply(X, 2, scale, scale=FALSE)
+  if(input$corTrendLorenz) {
+    for (i in 1:ncol(Errors)) {
+      x = Data[ ,i]
+      y = Errors[ ,i]
+      y = residuals(lm(y ~ x))
+      Errors[ ,i] = y
+    }
+    colnames(Errors) = paste0('lc-',colnames(Errors))
+  }
 
-  ErrViewLib::plotLorenz(
-    abs(X),
-    show.norm = input$lorenzNorm,
-    show.leg  = TRUE,
-    col.index = which(methList %in% input$selMethLorenz),
-    label     = 0,
-    leg.lwd   = 2*gPars$lwd,
-    gPars     = gpLoc)
+
+  if(!input$giniVsLAC) {
+    ErrViewLib::plotLorenz(
+      abs(Errors),
+      show.norm = input$lorenzNorm,
+      show.leg  = TRUE,
+      col.index = which(methList %in% input$selMethLorenz),
+      label     = 0,
+      leg.lwd   = 2*gPars$lwd,
+      gPars     = gpLoc)
+
+  } else {
+    ErrViewLib::plotGiniVsLAC(
+      abs(Errors),
+      show.norm = input$lorenzNorm,
+      show.leg  = TRUE,
+      col.index = which(methList %in% input$selMethLorenz),
+      label     = 0,
+      leg.lwd   = 2*gPars$lwd,
+      gPars     = gpLoc)
+  }
 
 },
 width = plotWidth, height = plotHeight)

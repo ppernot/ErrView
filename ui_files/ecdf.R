@@ -18,6 +18,11 @@ sidebarLayout(
       label = "HD quantiles",
       value = TRUE
     ),
+    checkboxInput(
+      "corTrendEcdf",
+      label = "Correct trend",
+      value = FALSE
+    ),
     # sliderInput(
     #   "scaleEcdf",
     #   label = "Scale X axis",

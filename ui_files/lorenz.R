@@ -4,13 +4,18 @@ sidebarLayout(
     h4("Lorenz Curves"),
     hr( style="border-color: #666;"),
     checkboxInput(
-      "lorenzCenter",
-      label = "Centered Abs. Err.",
+      "corTrendLorenz",
+      label = "Correct trend",
       value = FALSE
     ),
     checkboxInput(
       "lorenzNorm",
       label = "Normal curve",
+      value = FALSE
+    ),
+    checkboxInput(
+      "giniVsLAC",
+      label = "Gini vs. LAC",
       value = FALSE
     ),
     hr( style="border-color: #666;"),

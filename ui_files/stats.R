@@ -31,6 +31,13 @@ sidebarLayout(
       label = "Inversion Proba",
       value = TRUE
     ),
+    hr( style="border-color: #666;"),
+    checkboxInput(
+      "corTrendStat",
+      label = "Correct trend",
+      value = FALSE
+    ),
+    hr( style="border-color: #666;"),
     actionButton(
       "genStats",
       label = "Generate",

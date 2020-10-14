@@ -1,8 +1,21 @@
 observeEvent(
   input$genStats, {
     # Remove outliers,if any
-    if(!is.null(outSel()))
+    if(!is.null(outSel())) {
       Errors = Errors[ !outSel(), ]
+      Data = Data[ !outSel(), ]
+      # systems= systems[ !outSel() ]
+    }
+
+    if(input$corTrendStat) {
+      for (i in 1:ncol(Errors)) {
+        x = Data[ ,i]
+        y = Errors[ ,i]
+        y = residuals(lm(y ~ x))
+        Errors[ ,i] = y
+      }
+      colnames(Errors) = paste0('lc-',colnames(Errors))
+    }
 
     bs = estBS1(
       Errors,
@@ -17,7 +30,7 @@ observeEvent(
 )
 output$outStatsMsg <- renderPrint({
   if(is.null(bsList()))
-    return(cat(' Please select desired stats, \n click on Generate \n and wait...'))
+    return(cat(' Please select desired stats, \n click on Generate and wait...'))
 
   bs = bsList()
   outliers = bs$outliers
@@ -47,8 +60,7 @@ output$outStats1 <- renderPrint({
   print(df[,sel],)
 })
 output$outStats = DT::renderDataTable({
-  if(is.null(bsList()))
-    return(NULL)
+  req(bsList())
 
   bs = bsList()
 

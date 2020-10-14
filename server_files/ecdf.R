@@ -23,8 +23,10 @@ output$plotECDF <- renderPlot({
     return()
   }
 
-  if(!is.null(outSel()))
+  if(!is.null(outSel())) {
     Errors = Errors[ !outSel(), ]
+    Data   = Data[ !outSel(), ]
+  }
 
   # Local set of colors
   nMeth = length(methList)
@@ -34,18 +36,29 @@ output$plotECDF <- renderPlot({
   gpLoc$cols_tr2 = rev(inlmisc::GetColors(nMeth+1, alpha = 0.4))[1:nMeth]
   gpLoc$pty      = 'm'
 
-  X = abs(Errors[ ,input$selMethEcdf])
+  Errors = Errors[ ,input$selMethEcdf, drop = FALSE]
+  Data   = Data[ ,input$selMethEcdf, drop = FALSE]
+
+  if(input$corTrendEcdf) {
+    for (i in 1:ncol(Errors)) {
+      x = Data[ ,i]
+      y = Errors[ ,i]
+      y = residuals(lm(y ~ x))
+      Errors[ ,i] = y
+    }
+    colnames(Errors) = paste0('lc-',colnames(Errors))
+  }
 
   if (is.null(rangesECDF$x)) {
     xmin = 0
-    xmax = max(X)
+    xmax = max(abs(Errors))
   } else {
     xmin = rangesECDF$x[1]
     xmax = rangesECDF$x[2]
   }
 
   plotUncEcdf(
-    X,
+    abs(Errors),
     xlab      = NULL,
     xmin      = 0,
     xmax      = xmax,
