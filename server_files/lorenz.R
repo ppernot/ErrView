@@ -23,7 +23,8 @@ output$plotLorenz <- renderPlot({
     return()
   }
 
-  if(!is.null(outSel())) {
+  if(!is.null(outSel())&
+     input$remGlobOutLorenz) {
     Errors = Errors[ !outSel(), ]
     Data   = Data[ !outSel(), ]
   }
@@ -37,14 +38,28 @@ output$plotLorenz <- renderPlot({
   Errors = Errors[ ,input$selMethLorenz, drop = FALSE]
   Data   = Data[ ,input$selMethLorenz, drop = FALSE]
 
-  if(input$corTrendLorenz) {
+  if (input$corTrendLorenz) {
+    # Build formula
+    fo = y ~ 1
+    if (input$ctlDegree > 0)
+      fo = as.formula(
+        paste0('y ~ 1 +',
+               paste0(
+                 'I(x^', 1:input$ctlDegree, ')',
+                 collapse = '+'
+               )))
     for (i in 1:ncol(Errors)) {
-      x = Data[ ,i]
-      y = Errors[ ,i]
-      y = residuals(lm(y ~ x))
-      Errors[ ,i] = y
+      x = Data[, i]
+      y = Errors[, i]
+      y = residuals(lm(fo))
+      Errors[, i] = y
     }
-    colnames(Errors) = paste0('lc-',colnames(Errors))
+    prefix = 'c-'
+    if(input$ctlDegree == 1)
+      prefix = 'lc-'
+    else if(input$ctlDegree == 2)
+      prefix = 'qc-'
+    colnames(Errors) = paste0(prefix, colnames(Errors))
   }
 
 
@@ -54,6 +69,7 @@ output$plotLorenz <- renderPlot({
       show.norm = input$lorenzNorm,
       show.leg  = TRUE,
       col.index = which(methList %in% input$selMethLorenz),
+      identity.grid = input$identGridLorenz,
       label     = 0,
       leg.lwd   = 2*gPars$lwd,
       gPars     = gpLoc)

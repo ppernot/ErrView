@@ -69,6 +69,7 @@ output$howTo <- renderText({
     <li> <b>QQ-Plot:</b> qq-plot the distribution of errors.
     <li> <b>ECDFs:</b> Plot the Empirical Cumulated Distribution
                     Functions of absolute errors.
+    <li> <b>Lorenz:</b> Plot Lorenz curves, Gini and LAC statistics.
     <li> <b>Correlations:</b> Plot the correlation matrices of the
                     data, errors or statistics.
     <li> <b>Ranking:</b> Plot the Ranking Probability matrix.
