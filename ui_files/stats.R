@@ -32,10 +32,27 @@ sidebarLayout(
       value = TRUE
     ),
     hr( style="border-color: #666;"),
-    checkboxInput(
-      "corTrendStat",
-      label = "Correct trend",
-      value = FALSE
+    fixedRow(
+      column(
+        width = 6,
+        checkboxInput(
+          'corTrendStat',
+          label = 'Correct trend',
+          value = FALSE
+        )
+      ),
+      column(
+        width = 6,
+        numericInput(
+          'ctsDegree',
+          label = 'Trend degree',
+          value = 0,
+          min   = 0,
+          max   = 2,
+          step  = 1,
+          width = '100px'
+        )
+      )
     ),
     hr( style="border-color: #666;"),
     actionButton(

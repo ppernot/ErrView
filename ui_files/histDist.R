@@ -5,19 +5,37 @@ sidebarLayout(
     hr( style="border-color: #666;"),
     uiOutput("methodsHD"),
     hr( style="border-color: #666;"),
+    fixedRow(
+      column(
+        width = 6,
+        checkboxInput(
+          'regHD',
+          label = 'Plot trend line',
+          value = FALSE
+        )
+      ),
+      column(
+        width = 6,
+        numericInput(
+          'cthdDegree',
+          label = 'Trend degree',
+          value = 0,
+          min   = 0,
+          max   = 2,
+          step  = 1,
+          width = '100px'
+        )
+      )
+    ),
+    checkboxInput(
+      'corTrendHD',
+      label = 'Correct trend',
+      value = FALSE
+    ),
+    hr( style="border-color: #666;"),
     checkboxInput(
       'removeGlobOut',
       label = 'Remove glob. outl.',
-      value = FALSE
-    ),
-    checkboxInput(
-      'regHD',
-      label = 'Reg. line',
-      value = FALSE
-    ),
-    checkboxInput(
-      'untHD',
-      label = 'Correct trend',
       value = FALSE
     ),
     checkboxInput(

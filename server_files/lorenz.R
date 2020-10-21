@@ -38,30 +38,8 @@ output$plotLorenz <- renderPlot({
   Errors = Errors[ ,input$selMethLorenz, drop = FALSE]
   Data   = Data[ ,input$selMethLorenz, drop = FALSE]
 
-  if (input$corTrendLorenz) {
-    # Build formula
-    fo = y ~ 1
-    if (input$ctlDegree > 0)
-      fo = as.formula(
-        paste0('y ~ 1 +',
-               paste0(
-                 'I(x^', 1:input$ctlDegree, ')',
-                 collapse = '+'
-               )))
-    for (i in 1:ncol(Errors)) {
-      x = Data[, i]
-      y = Errors[, i]
-      y = residuals(lm(fo))
-      Errors[, i] = y
-    }
-    prefix = 'c-'
-    if(input$ctlDegree == 1)
-      prefix = 'lc-'
-    else if(input$ctlDegree == 2)
-      prefix = 'qc-'
-    colnames(Errors) = paste0(prefix, colnames(Errors))
-  }
-
+  if (input$corTrendLorenz)
+    Errors = trendCorr(Data, Errors, input$ctlDegree)
 
   if(!input$giniVsLAC) {
     ErrViewLib::plotLorenz(

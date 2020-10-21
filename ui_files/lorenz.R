@@ -16,11 +16,12 @@ sidebarLayout(
         width = 6,
         checkboxInput(
           "remGlobOutLorenz",
-          label = "Remove outliers",
+          label = "Remove glob. outl.",
           value = FALSE
         )
       )
     ),
+    # hr( style="border-color: #666;"),
     fixedRow(
       column(
         width = 6,
@@ -43,6 +44,7 @@ sidebarLayout(
         )
       )
     ),
+    # hr( style="border-color: #666;"),
     fixedRow(
       column(
         6,

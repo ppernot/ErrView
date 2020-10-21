@@ -1,5 +1,6 @@
 observeEvent(
   input$genStats, {
+
     # Remove outliers,if any
     if(!is.null(outSel())) {
       Errors = Errors[ !outSel(), ]
@@ -7,15 +8,8 @@ observeEvent(
       # systems= systems[ !outSel() ]
     }
 
-    if(input$corTrendStat) {
-      for (i in 1:ncol(Errors)) {
-        x = Data[ ,i]
-        y = Errors[ ,i]
-        y = residuals(lm(y ~ x))
-        Errors[ ,i] = y
-      }
-      colnames(Errors) = paste0('lc-',colnames(Errors))
-    }
+    if (input$corTrendStat)
+      Errors = trendCorr (Data, Errors, input$ctsDegree)
 
     bs = estBS1(
       Errors,

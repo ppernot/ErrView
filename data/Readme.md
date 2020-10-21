@@ -21,7 +21,7 @@ __148__:241707](http://dx.doi.org/10.1063/1.5016248)
 
 + __WU2015__: T. Wu, Y. N. Kalugina, and A. J. Thakkar (2015) [_Chem. Phys. Letters_ __635__:257–261](http://dx.doi.org/10.1016/j.cplett.2015.07.003)
 
-+ __ZHA2018__: Y. Zhang, D.A. Kitchaev, J. Yang, J. _et al._ (2018) [_npj Comput Mater_ __4__:9](https://doi.org/10.1038/s41524-018-0065-z)
-
 + __ZAS2019__: P. Zaspel, B. Huang, H. Harbrecht, and O. A. von Lilienfeld (2019) [_J. Chem.
 Theory Comput._ __15__:1546–1559](http://dx.doi.org/10.1021/acs.jctc.8b00832)
+
++ __ZHA2018__: Y. Zhang, D.A. Kitchaev, J. Yang, J. _et al._ (2018) [_npj Comput Mater_ __4__:9](https://doi.org/10.1038/s41524-018-0065-z)

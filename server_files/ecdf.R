@@ -23,7 +23,8 @@ output$plotECDF <- renderPlot({
     return()
   }
 
-  if(!is.null(outSel())) {
+  if(!is.null(outSel())&
+     input$remGlobOutECDF) {
     Errors = Errors[ !outSel(), ]
     Data   = Data[ !outSel(), ]
   }
@@ -39,15 +40,8 @@ output$plotECDF <- renderPlot({
   Errors = Errors[ ,input$selMethEcdf, drop = FALSE]
   Data   = Data[ ,input$selMethEcdf, drop = FALSE]
 
-  if(input$corTrendEcdf) {
-    for (i in 1:ncol(Errors)) {
-      x = Data[ ,i]
-      y = Errors[ ,i]
-      y = residuals(lm(y ~ x))
-      Errors[ ,i] = y
-    }
-    colnames(Errors) = paste0('lc-',colnames(Errors))
-  }
+  if (input$corTrendECDF)
+    Errors = trendCorr(Data, Errors, input$ctecDegree)
 
   if (is.null(rangesECDF$x)) {
     xmin = 0

@@ -28,18 +28,18 @@ output$plotHistDist <- renderPlot({
   gpLoc = gPars
   gpLoc$pty = 'm'
 
-  x = Data[ ,input$selMethHD]
-  y = Errors[ ,input$selMethHD]
-  # Remove linear trend ?
-  if(input$untHD)
-    y = residuals(lm(y ~ x))
+  x = Data[ ,input$selMethHD,drop = FALSE]
+  y = Errors[ ,input$selMethHD,drop = FALSE]
+
+  if (input$corTrendHD)
+    y = trendCorr(x, y, input$cthdDegree)
 
   nclass = input$nbClass
   if(nclass == 0)
     nclass = nclass.Sturges(y)
 
   plotDistHist(
-    x, y,
+    unlist(x), unlist(y),
     uy        = NULL,
     nclass    = nclass,       # Nb class for histogram
     xlab      = paste0('Data [',dataUnits(),']'),
@@ -52,6 +52,8 @@ output$plotHistDist <- renderPlot({
     main      = input$selMethHD,
     plotReg   = input$regHD,  # Regression line
     plotConf  = input$regHD,  # Confidence limits on reg-line
+    degree    = if(input$corTrendHD) 1 else input$cthdDegree,
+                 # Basic trend line if already corrected
     plotBA    = input$baHD,   # Bland-Altman LOAs
     plotBAci  = input$baHD,   # 95% CI on Bland-Altman LOAs
     xlim      = c(min(x),1.1*max(x)),# Leave space for labels
