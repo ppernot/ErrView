@@ -44,17 +44,22 @@ output$plotECDF <- renderPlot({
     Errors = trendCorr(Data, Errors, input$ctecDegree)
 
   if (is.null(rangesECDF$x)) {
-    xmin = 0
-    xmax = max(abs(Errors))
+    if(input$absErrECDF) {
+      xmin = 0
+      xmax = max(abs(Errors))
+    } else {
+      xmin = min(Errors)
+      xmax = max(Errors)
+    }
   } else {
     xmin = rangesECDF$x[1]
     xmax = rangesECDF$x[2]
   }
-
   plotUncEcdf(
-    abs(Errors),
+    Errors,
+    absErrors = input$absErrECDF,
     xlab      = NULL,
-    xmin      = 0,
+    xmin      = xmin,
     xmax      = xmax,
     title     = '',
     show.leg  = TRUE,

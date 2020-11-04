@@ -1,32 +1,49 @@
 sidebarLayout(
   sidebarPanel(
     width = sideWidth,
-    h4("Lorenz Curves"),
+    h4("ECDF"),
     hr( style="border-color: #666;"),
     fixedRow(
       column(
         width = 6,
         checkboxInput(
-          "giniVsLAC",
-          label = "Gini vs. LAC",
+          "absErrPDF",
+          label = "Absolute Errors",
           value = FALSE
         )
       ),
       column(
         width = 6,
         checkboxInput(
-          "remGlobOutLorenz",
+          "remGlobOutPDF",
           label = "Remove glob. outl.",
           value = FALSE
         )
       )
     ),
-    # hr( style="border-color: #666;"),
     fixedRow(
       column(
         width = 6,
         checkboxInput(
-          'corTrendLorenz',
+          "showMSEPDF",
+          label = "Show Mean",
+          value = FALSE
+        )
+      ),
+      column(
+        width = 6,
+        checkboxInput(
+          "showQ95PDF",
+          label = "Show Q95",
+          value = FALSE
+        )
+      )
+    ),
+    fixedRow(
+      column(
+        width = 6,
+        checkboxInput(
+          'corTrendPDF',
           label = 'Correct trend',
           value = FALSE
         )
@@ -34,7 +51,7 @@ sidebarLayout(
       column(
         width = 6,
         numericInput(
-          'ctlDegree',
+          'ctDegreePDF',
           label = 'Trend degree',
           value = 0,
           min   = 0,
@@ -44,42 +61,44 @@ sidebarLayout(
         )
       )
     ),
-    # hr( style="border-color: #666;"),
     fixedRow(
       column(
-        6,
+        width = 6,
         checkboxInput(
-          "identGridLorenz",
-          label = "Identity grid",
+          "fillPDF",
+          label = "Fill curves",
           value = FALSE
         )
       ),
       column(
-        6,
+        width = 6,
         checkboxInput(
-          "lorenzNorm",
-          label = "Normal curve",
+          "fixColorsPDF",
+          label = "Fix colors",
           value = TRUE
         )
       )
     ),
-    checkboxInput(
-      "varLorenz",
-      label = "Var-based",
-      value = FALSE
+    sliderInput(
+      'adjBwPDF',
+      label = 'Adjust bandwidth',
+      min = 0.1,
+      max = 2.0,
+      step = 0.1,
+      value = 1
     ),
     hr( style="border-color: #666;"),
-    uiOutput("methodsLorenz")
+    uiOutput("methodsPDF")
   ),
   mainPanel(
     width = mainWidth,
     plotOutput(
-      "plotLorenz"#,
-      # dblclick = "Lorenz_dblclick",
-      # brush = brushOpts(
-      #   id = "Lorenz_brush",
-      #   resetOnNew = TRUE
-      # )
+      "plotPDF",
+      dblclick = "PDF_dblclick",
+      brush = brushOpts(
+        id = "PDF_brush",
+        resetOnNew = TRUE
+      )
     )
   )
 )

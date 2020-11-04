@@ -7,6 +7,7 @@ function(input, output, session) {
     "stats.R",
     "histDist.R",
     "qqPlot.R",
+    "pdf.R",
     "ecdf.R",
     "lorenz.R",
     "correl.R",

@@ -32,6 +32,10 @@ function(request) {
       source_ui("qqPlot.R")
     ),
     tabPanel(
+      title = "PDFs",
+      source_ui("pdf.R")
+    ),
+    tabPanel(
       title = "ECDFs",
       source_ui("ecdf.R")
     ),

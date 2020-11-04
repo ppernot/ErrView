@@ -43,7 +43,8 @@ output$plotLorenz <- renderPlot({
 
   if(!input$giniVsLAC) {
     ErrViewLib::plotLorenz(
-      abs(Errors),
+      Errors,
+      var = input$varLorenz,
       show.norm = input$lorenzNorm,
       show.leg  = TRUE,
       col.index = which(methList %in% input$selMethLorenz),

@@ -17,7 +17,8 @@ sidebarLayout(
         'Kurt'    = 'kurt',
         'W'       = 'W',
         'Gini'    = 'gini',
-        'LAC'     = 'lasym'
+        'LAC'     = 'lasym',
+        'Pietra'  = 'pietra'
         ),
       selected = c('mue','q95hd','mse','rmsd')
     ),

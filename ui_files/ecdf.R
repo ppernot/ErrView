@@ -7,6 +7,24 @@ sidebarLayout(
       column(
         width = 6,
         checkboxInput(
+          "absErrECDF",
+          label = "Absolute Errors",
+          value = TRUE
+        )
+      ),
+      column(
+        width = 6,
+        checkboxInput(
+          "remGlobOutECDF",
+          label = "Remove glob. outl.",
+          value = FALSE
+        )
+      )
+    ),
+    fixedRow(
+      column(
+        width = 6,
+        checkboxInput(
           "showMUE",
           label = "Show MUE",
           value = FALSE
@@ -20,11 +38,6 @@ sidebarLayout(
           value = TRUE
         )
       )
-    ),
-    checkboxInput(
-      "remGlobOutECDF",
-      label = "Remove glob. outl.",
-      value = FALSE
     ),
     fixedRow(
       column(
