@@ -67,7 +67,24 @@ sidebarLayout(
       value = TRUE
     ),
     hr( style="border-color: #666;"),
-    uiOutput("methodsEcdf")
+    fixedRow(
+      column(
+        6,
+        uiOutput("methodsEcdf")
+      ),
+      column(
+        6,
+        actionButton(
+          "ecdfCheckAll",
+          label = "Check All"
+        ),
+        br(),br(),
+        actionButton(
+          "ecdfCheckNone",
+          label = "Reset"
+        )
+      )
+    )
   ),
   mainPanel(
     width = mainWidth,

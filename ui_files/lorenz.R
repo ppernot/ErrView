@@ -69,7 +69,24 @@ sidebarLayout(
       value = FALSE
     ),
     hr( style="border-color: #666;"),
-    uiOutput("methodsLorenz")
+    fixedRow(
+      column(
+        6,
+        uiOutput("methodsLorenz")
+      ),
+      column(
+        6,
+        actionButton(
+          "lorenzCheckAll",
+          label = "Check All"
+        ),
+        br(),br(),
+        actionButton(
+          "lorenzCheckNone",
+          label = "Reset"
+        )
+      )
+    )
   ),
   mainPanel(
     width = mainWidth,

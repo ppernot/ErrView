@@ -7,10 +7,34 @@ output$methodsLorenz <- renderUI({
     label = "Choose methods",
     choiceNames = methList,
     choiceValues = methList,
-    selected = methList
+    selected = methList[1]
   )
 
 })
+observeEvent(
+  input$lorenzCheckAll,
+  {
+    updateCheckboxGroupInput(
+      session,
+      "selMethLorenz",
+      choiceNames = methList,
+      choiceValues = methList,
+      selected = methList
+    )
+  }
+)
+observeEvent(
+  input$lorenzCheckNone,
+  {
+    updateCheckboxGroupInput(
+      session,
+      "selMethLorenz",
+      choiceNames = methList,
+      choiceValues = methList,
+      selected = methList[1]
+    )
+  }
+)
 # rangesLorenz <- reactiveValues(x = NULL, y = NULL)
 output$plotLorenz <- renderPlot({
   if(is.null(input$dataFile)) {

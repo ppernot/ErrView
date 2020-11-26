@@ -1,7 +1,7 @@
 sidebarLayout(
   sidebarPanel(
     width = sideWidth,
-    h4("ECDF"),
+    h4("PDF"),
     hr( style="border-color: #666;"),
     fixedRow(
       column(
@@ -88,7 +88,24 @@ sidebarLayout(
       value = 1
     ),
     hr( style="border-color: #666;"),
-    uiOutput("methodsPDF")
+    fixedRow(
+      column(
+        6,
+        uiOutput("methodsPDF")
+      ),
+      column(
+        6,
+        actionButton(
+          "pdfCheckAll",
+          label = "Check All"
+        ),
+        br(),br(),
+        actionButton(
+          "pdfCheckNone",
+          label = "Reset"
+        )
+      )
+    )
   ),
   mainPanel(
     width = mainWidth,

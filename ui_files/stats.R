@@ -15,6 +15,7 @@ sidebarLayout(
         'MAD_SD'  = 'mad_sd',
         'Skew'    = 'skew',
         'Kurt'    = 'kurt',
+        'KurtCS'  = 'kurtcs',
         'W'       = 'W',
         'Gini'    = 'gini',
         'LAC'     = 'lasym',

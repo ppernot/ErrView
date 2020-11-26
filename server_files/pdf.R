@@ -12,6 +12,30 @@ output$methodsPDF <- renderUI({
   )
 
 })
+observeEvent(
+  input$pdfCheckAll,
+  {
+    updateCheckboxGroupInput(
+      session,
+      "selMethPDF",
+      choiceNames = methList,
+      choiceValues = methList,
+      selected = methList
+    )
+  }
+)
+observeEvent(
+  input$pdfCheckNone,
+  {
+    updateCheckboxGroupInput(
+      session,
+      "selMethPDF",
+      choiceNames = methList,
+      choiceValues = methList,
+      selected = methList[1]
+    )
+  }
+)
 rangesPDF <- reactiveValues(x = NULL, y = NULL)
 output$plotPDF <- renderPlot({
   if(is.null(input$dataFile)) {

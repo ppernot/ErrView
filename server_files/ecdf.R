@@ -11,6 +11,30 @@ output$methodsEcdf <- renderUI({
   )
 
 })
+observeEvent(
+  input$ecdfCheckAll,
+  {
+    updateCheckboxGroupInput(
+      session,
+      "selMethEcdf",
+      choiceNames = methList,
+      choiceValues = methList,
+      selected = methList
+    )
+  }
+)
+observeEvent(
+  input$ecdfCheckNone,
+  {
+    updateCheckboxGroupInput(
+      session,
+      "selMethEcdf",
+      choiceNames = methList,
+      choiceValues = methList,
+      selected = methList[1]
+    )
+  }
+)
 rangesECDF <- reactiveValues(x = NULL, y = NULL)
 output$plotECDF <- renderPlot({
   if(is.null(input$dataFile)) {
