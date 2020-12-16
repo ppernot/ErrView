@@ -9,15 +9,15 @@ options(
 # CRAN Libraries ####
 # libs <- c(
 #   "devtools", "Hmisc", "rlist", "boot", "lmtest",
-#   "shiny", "shinyFiles",
+#   "shiny", "shinyFiles", "BiocManager",
 #   "DT", "tools", "inlmisc", "distillery", "ineq"
 # )
 # for (lib in libs) {
 #   if (!require(lib, character.only = TRUE, quietly = TRUE)) {
 #     install.packages(
 #       lib,
-#       dependencies = TRUE #,
-#       # repos = "https://cran.univ-paris1.fr"
+#       # repos = "https://cran.univ-paris1.fr",
+#       dependencies = TRUE #
 #     )
 #     library(lib, character.only = TRUE, quietly = TRUE)
 #   }
@@ -26,8 +26,12 @@ options(
 # if(!require(lib,character.only = TRUE))
   # devtools::install_github(paste0("ppernot/",lib))
 # library(lib,character.only = TRUE)
+# lib = "genefilter"
+# if(!require(lib,character.only = TRUE))
+#   BiocManager::install("genefilter", version="3.10")
+# library(lib, character.only = TRUE)
 
-# # For Shinyio.apps
+# For Shinyio.apps
 library(devtools)
 library(Hmisc)
 library(rlist)
@@ -41,5 +45,6 @@ library(boot)
 library(distillery)
 library(ErrViewLib)
 library(ineq)
+library(genefilter)
 
 

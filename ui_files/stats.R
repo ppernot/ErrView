@@ -11,17 +11,20 @@ sidebarLayout(
         'Q95'     = 'q95',
         'Q95(HD)' = 'q95hd',
         'MSE'     = 'mse',
+        'Mode'    = 'hrmode',
         'RMSD'    = 'rmsd',
         'MAD_SD'  = 'mad_sd',
         'Skew'    = 'skew',
+        'SkewGM'  = 'skewgm',
         'Kurt'    = 'kurt',
         'KurtCS'  = 'kurtcs',
         'W'       = 'W',
         'Gini'    = 'gini',
+        'GMCF'    = 'gimc',
         'LAC'     = 'lasym',
         'Pietra'  = 'pietra'
         ),
-      selected = c('mue','q95hd','mse','rmsd')
+      selected = c('mue','q95hd','mse','rmsd','gimc')
     ),
     checkboxInput(
       "sipChoice",
