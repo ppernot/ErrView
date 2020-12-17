@@ -1,4 +1,4 @@
-version = 1.2
+version = 1.3
 
 # Increas max loading size to 30 Mo
 options(shiny.maxRequestSize=30*1024^2)
