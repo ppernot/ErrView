@@ -57,6 +57,8 @@ observe({
       scramble = input$scrambleParaPlot,
       labels   = labels,
       units    = dataUnits(),
+      outLabCex = input$outliersCexLab,
+      outMethCex = input$outliersCexMeth,
       lab.thresh = lab.thresh,
       outliers = input$outliersParaPlot,
       gPars    = gpLoc)
@@ -65,7 +67,7 @@ observe({
     if(input$outliersParaPlot != "no")
       outSel(out)
   },
-  width  = min(plotWidth,round(plotWidth  * K()^0.5 / nomSize)),
+  width  = min(1000,max(300,round(plotWidth  * K()^0.5 / nomSize))),
   height = plotHeight
   )
 })

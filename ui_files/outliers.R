@@ -35,6 +35,22 @@ sidebarLayout(
         "CI90" = "ci90",
         "CI95" = "ci95"
       )
+    ),
+    sliderInput(
+      "outliersCexLab",
+      label = "Labels size",
+      min = 0,
+      max = 1,
+      value = 1,
+      step = 0.1
+    ),
+    sliderInput(
+      "outliersCexMeth",
+      label = "Methods size",
+      min = 0,
+      max = 1,
+      value = 1,
+      step = 0.1
     )
   ),
   mainPanel(
