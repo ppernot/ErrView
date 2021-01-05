@@ -22,7 +22,7 @@ the other ones implement different analysis methods.
 
   - [__HistDist__](04-histdist.html): plot the errors and their histograms
 
-  - [__QQ-Plot__](05-qq-plot.html): qq-plots
+  - [__QQ-Plot__](05-qqplot.html): qq-plots
 
   - [__PDFs__](06-pdfs.html): plot probability density functions
 
