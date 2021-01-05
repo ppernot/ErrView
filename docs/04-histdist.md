@@ -1,6 +1,6 @@
 # __HistDist__ module
 
-Tis moduleenables to plot the distribution of errors (as histogram)
+This module enables to plot the distribution of errors (as histogram)
 and to explore the trends of error sets.
 
 ## Controls

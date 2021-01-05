@@ -4,7 +4,7 @@ output$methodsQQ <- renderUI({
 
   selectInput(
     "selMethQQ",
-    label = "Method",
+    label = "Select method",
     choices = methList,
     multiple = FALSE
   )
