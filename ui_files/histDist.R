@@ -1,9 +1,30 @@
 sidebarLayout(
   sidebarPanel(
     width = sideWidth,
-    h4("Errors vs. Data"),
+    h4("Hist-Dist"),
     hr( style="border-color: #666;"),
     uiOutput("methodsHD"),
+    checkboxInput(
+      'removeGlobOut',
+      label = 'Remove glob. outl.',
+      value = FALSE
+    ),
+
+    hr( style="border-color: #666;"),
+    sliderInput(
+      'nbClass',
+      label = '# Hist. classes',
+      min   =   0,
+      max   = 100,
+      step  =   5,
+      value =   0
+    ),
+    checkboxInput(
+      'normHD',
+      label = 'Normal fit',
+      value = TRUE
+    ),
+
     hr( style="border-color: #666;"),
     fixedRow(
       column(
@@ -32,20 +53,12 @@ sidebarLayout(
       label = 'Correct trend',
       value = FALSE
     ),
+
     hr( style="border-color: #666;"),
-    checkboxInput(
-      'removeGlobOut',
-      label = 'Remove glob. outl.',
-      value = FALSE
-    ),
+
     checkboxInput(
       'baHD',
       label = 'Bland-Altmann',
-      value = TRUE
-    ),
-    checkboxInput(
-      'normHD',
-      label = 'Normal fit',
       value = TRUE
     ),
     checkboxInput(
@@ -57,15 +70,6 @@ sidebarLayout(
       'yScale',
       label = 'Glob. error scale',
       value = TRUE
-    ),
-    hr( style="border-color: #666;"),
-    sliderInput(
-      'nbClass',
-      label = '# Hist. classes',
-      min   =   0,
-      max   = 100,
-      step  =   5,
-      value =   0
     )
   ),
   mainPanel(

@@ -4,7 +4,7 @@ output$methodsHD <- renderUI({
 
   selectInput(
     "selMethHD",
-    label = "Method",
+    label = "Select method",
     choices = methList,
     multiple = FALSE
   )
@@ -36,7 +36,7 @@ output$plotHistDist <- renderPlot({
 
   nclass = input$nbClass
   if(nclass == 0)
-    nclass = nclass.Sturges(y)
+    nclass = nclass.scott(y)
 
   plotDistHist(
     unlist(x), unlist(y),
