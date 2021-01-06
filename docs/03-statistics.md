@@ -17,7 +17,7 @@ conflict with the outliers status.
     + `MUE`: Mean Unsigned Error; arithmetic mean of the absolute errors
     
     + `Q95`, `Q95(HD)`: 95th quantile of the absolute errors; the
-    HD version uses the Harrell-Davis estimator for quantiles
+    HD version uses the Harrell-Davis estimator for quantiles [1,2]
     
     + `MSE`: Mean Signed Error; arithmetic mean of the errors
     
@@ -70,3 +70,17 @@ a graphical representation.
 
 
 * `Generate`: press this button to generate the statistics table
+
+## References
+
+1. P. Pernot and A. Savin (2018) Probabilistic performance estimators 
+for computational chemistry methods: The empirical cumulative distribution 
+function of absolute errors. _J. Chem. Phys._ __148__:241707.
+(https://doi.org/10.1063/1.5016248)
+
+2. P. Pernot and A. Savin (2020) Probabilistic performance estimators for
+computational chemistry methods: Systematic Improvement Probability and 
+Ranking Probability Matrix. I. Theory. _J. Chem. Phys._ __152__:164108. 
+(http://dx.doi.org/10.1063/5.0006202)
+
+
