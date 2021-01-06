@@ -63,10 +63,23 @@ sidebarLayout(
         )
       )
     ),
-    checkboxInput(
-      "varLorenz",
-      label = "Var-based",
-      value = FALSE
+    fixedRow(
+      column(
+        6,
+        checkboxInput(
+          "varLorenz",
+          label = "Var-based",
+          value = FALSE
+        )
+      ),
+      column(
+        width = 6,
+        checkboxInput(
+          "fixColorsLorenz",
+          label = "Fix colors",
+          value = TRUE
+        )
+      )
     ),
     hr( style="border-color: #666;"),
     fixedRow(

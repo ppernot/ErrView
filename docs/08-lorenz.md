@@ -1,25 +1,25 @@
-# __ECDFs__ module
+# __Lorenz__ module
 
-Plot of probability density functions using a gaussian kernel.
+Plot of Lorenz curves of absolute errors and associated statistics.
 
 ## Controls
  
-* `Absolute errors`: plot PDF of absolute errors. 
-Note that the use of a gaussian kernel produces an
-artefactual tail for negative errors.
+* `Gini vs. LAC`:  2D plot of Lorenz Asymmetry coefficients
+  vs. Gini coefficients (experimental)
 
 * `Remove glob. outl.`: remove global outliers (if any)
   defined in module `Outliers`
-
-* `Show MUE`: display the mean of absolute errors
-
-* `Show Q95`: display the Q95 statistic
 
 * `Correct trend`: remove trend from errors
 
 * `Trend degree`: degree of the polynomial to fit trend
 
-* `HD quantiles`: use Harrell-Davis quantiles (default)
+* `Identity grid`: plot parallel y=a+x lines to evaluate
+  asymmetry of Lorenz curves
+
+* `Normal curve`: plot Lorenz curve for half-normal distrubution
+
+* `Var-based`: variance-based Lorenz curves (experimental)
 
 * `Fix colors`: use a color palette adapted to the selected methods,
   or a colr palette based on the full set of methods (if checked)
@@ -36,6 +36,5 @@ artefactual tail for negative errors.
 
 ## Plot
 
-The plot is zoomable by click and drag + dble click.
-A simple dble click restores the full scale.
+Plot of the Lorenz curves or from the 'Gini va. LAC' data.
 

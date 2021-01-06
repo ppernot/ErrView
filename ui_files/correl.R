@@ -5,7 +5,7 @@ sidebarLayout(
     hr( style="border-color: #666;"),
     radioButtons(
       "corSample",
-      label = "Echantillons",
+      label = "Samples",
       choices = list(
         "Data"   = "data",
         "Errors" = "errors",
@@ -16,7 +16,7 @@ sidebarLayout(
     ),
     radioButtons(
       "corMethod",
-      label = "Method for Errors",
+      label = "Correlation type",
       choices = list(
         "Pearson"  = "pearson",
         "Spearman" = "spearman",

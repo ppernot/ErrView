@@ -54,7 +54,10 @@ output$plotLorenz <- renderPlot({
   }
 
   # Local set of colors
-  nMeth = length(methList)
+  if(input$fixColorsLorenz)
+    nMeth = length(methList)
+  else
+    nMeth = length(input$selMethLorenz)
   gpLoc = gPars
   gpLoc$cols  = rev(inlmisc::GetColors(nMeth+1))[1:nMeth]
   gpLoc$pty   = 's'
@@ -71,7 +74,10 @@ output$plotLorenz <- renderPlot({
       var = input$varLorenz,
       show.norm = input$lorenzNorm,
       show.leg  = TRUE,
-      col.index = which(methList %in% input$selMethLorenz),
+      col.index = if(input$fixColorsLorenz)
+                    which(methList %in% input$selMethLorenz)
+                  else
+                    1:nMeth,
       identity.grid = input$identGridLorenz,
       label     = 0,
       leg.lwd   = 2*gPars$lwd,
@@ -82,7 +88,10 @@ output$plotLorenz <- renderPlot({
       abs(Errors),
       show.norm = input$lorenzNorm,
       show.leg  = TRUE,
-      col.index = which(methList %in% input$selMethLorenz),
+      col.index = if(input$fixColorsLorenz)
+        which(methList %in% input$selMethLorenz)
+      else
+        1:nMeth,
       label     = 0,
       leg.lwd   = 2*gPars$lwd,
       gPars     = gpLoc)
