@@ -38,3 +38,9 @@ Plot of Lorenz curves of absolute errors and associated statistics.
 
 Plot of the Lorenz curves or from the 'Gini va. LAC' data.
 
+
+## References
+
+1. P. Pernot and A. Savin (2021) Using the Gini coefficient 
+to characterize the shape of computational chemistry error 
+distributions. _arXiv_ https://arxiv.org/abs/2012.09589
