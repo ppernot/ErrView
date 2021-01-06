@@ -31,8 +31,8 @@ The errors are centered and scaled for the comparison.
 
 ## Plot
 
-The quantiles dor the centered and scaled errors are
-potted agains the theoretical quantiles for a normal
+The quantiles of the centered and scaled errors are
+plotted against the theoretical quantiles for a normal
 distribution (blue points). 
-For a normal data set, these should line close to the diagonal.
+For a normal data set, these should lie close to the diagonal.
 

@@ -61,10 +61,23 @@ sidebarLayout(
         )
       )
     ),
-    checkboxInput(
-      "Qalgo",
-      label = "HD quantiles",
-      value = TRUE
+    fixedRow(
+      column(
+        width = 6,
+        checkboxInput(
+          "Qalgo",
+          label = "HD quantiles",
+          value = TRUE
+        )
+      ),
+      column(
+        width = 6,
+        checkboxInput(
+          "fixColorsEcdf",
+          label = "Fix colors",
+          value = TRUE
+        )
+      )
     ),
     hr( style="border-color: #666;"),
     fixedRow(

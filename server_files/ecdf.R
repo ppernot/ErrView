@@ -54,7 +54,10 @@ output$plotECDF <- renderPlot({
   }
 
   # Local set of colors
-  nMeth = length(methList)
+  if(input$fixColorsEcdf)
+    nMeth = length(methList)
+  else
+    nMeth = length(input$selMethEcdf)
   gpLoc = gPars
   gpLoc$cols     = rev(inlmisc::GetColors(nMeth+1))[1:nMeth]
   gpLoc$cols_tr  = rev(inlmisc::GetColors(nMeth+1, alpha = 0.1))[1:nMeth]
@@ -90,7 +93,10 @@ output$plotECDF <- renderPlot({
     show.MAE  = input$showMUE,
     show.Q95  = input$showQ95,
     Q.algo    = input$Qalgo,
-    col.index = which(methList %in% input$selMethEcdf),
+    col.index = if(input$fixColorsEcdf)
+                  which(methList %in% input$selMethEcdf)
+                else
+                  1:nMeth,
     weights   = NULL,
     units     = dataUnits(),
     label     = 0,
