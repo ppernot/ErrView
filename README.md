@@ -54,7 +54,7 @@ A web interface to the code is also available online
 
 Predefined datasets are availble directly on the server.
 
-__Warning !__ This versions runs on a server with limited memory. 
+__Warning !__ This version runs on a server with limited memory. 
 It will handle only small datasets. Running out of memory will generate 
 a message "Error: An error has occurred. Check your logs or contact 
 the app author for clarification." 
