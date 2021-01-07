@@ -1,6 +1,6 @@
 ErrView User's Manual
 ================
-(2020-12-24)
+(2021-21-06)
 
 
 ## Introduction
@@ -42,6 +42,8 @@ the other ones implement different analysis methods.
   
   - [__UQ__](13-uq.html): uncertainty quantification (Work in Progress)
   
+
+## References
 
 A good introduction to the data and methods can be found in the 
 following articles:

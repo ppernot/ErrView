@@ -1,6 +1,6 @@
 # __Lorenz__ module
 
-Plot of Lorenz curves of absolute errors and associated statistics.
+Plot of Lorenz curves of absolute errors and associated statistics [1].
 
 ## Controls
  
