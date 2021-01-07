@@ -12,7 +12,7 @@ options(
 ## CRAN Libraries ----
 libs <- c(
   "devtools", "Hmisc", "rlist", "boot", "lmtest",
-  "shiny", "shinyFiles", "BiocManager",
+  "shiny", "shinyFiles", "BiocManager","Biogenerics","Biobase",
   "DT", "tools", "inlmisc", "distillery", "ineq"
 )
 for (lib in libs) {

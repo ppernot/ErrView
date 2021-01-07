@@ -2,11 +2,23 @@
 
 # ErrView: Error sets viewer and comparator
 
-Implements methods from article "_Probabilistic performance estimators for computational chemistry methods: Systematic Improvement Probability and  Ranking Probability Matrix. I. Theory_" by P. Pernot and A. Savin  (2020) [_J. Chem. Phys._ __152__:164108.](http://dx.doi.org/10.1063/5.0006202). Please cite this article if you use the code.
+Implements methods from the following articles:
 
-+ rank inversion probability
-+ ranking uncertainty matrix
-+ systematic improvement probability
+1. P. Pernot and A. Savin (2018) Probabilistic performance estimators 
+for computational chemistry methods: The empirical cumulative distribution 
+function of absolute errors. _J. Chem. Phys._ __148__:241707.
+https://doi.org/10.1063/1.5016248
+
+2. P. Pernot and A. Savin (2020) Probabilistic performance estimators for
+computational chemistry methods: Systematic Improvement Probability and 
+Ranking Probability Matrix. I. Theory. _J. Chem. Phys._ __152__:164108. 
+http://dx.doi.org/10.1063/5.0006202
+
+3. P. Pernot and A. Savin (2021) Using the Gini coefficient 
+to characterize the shape of computational chemistry error 
+distributions. _arXiv_ https://arxiv.org/abs/2012.09589
+
+Please cite these articles if you use the code.
 
 ## Data
 
