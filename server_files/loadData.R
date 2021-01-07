@@ -67,6 +67,7 @@ output$howTo <- renderText({
     <li> <b>HistDist:</b> Plot the distribution of errors as function
                      of calculated data, and errors histograms.
     <li> <b>QQ-Plot:</b> qq-plot the distribution of errors.
+    <li> <b>PDFs:</b> Plot the Probability Density Functions of errors.
     <li> <b>ECDFs:</b> Plot the Empirical Cumulated Distribution
                     Functions of absolute errors.
     <li> <b>Lorenz:</b> Plot Lorenz curves, Gini and LAC statistics.
@@ -76,5 +77,7 @@ output$howTo <- renderText({
     <li> <b>SIP mat.:</b> Plot the Systematic Improvement Probability matrix.
     <li> <b>Delta |Err|:</b> Pairwise stats - ECDF of the difference of
                       absolute errors and SIP, MG & ML.
+    <li> <b>UQ:</b> Uncertainty Quantification (Experimental).
+
   </ul>'
 })

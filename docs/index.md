@@ -8,6 +8,10 @@ ErrView User's Manual
 `Errview` provides a GUI to analyze error datasets and perform
 computational chemistry methods benchmarking and ranking. 
 
+It is mostly based on the papers by P. Pernot and A. Savin [1-4],
+where a complete description of the methods and further links
+to the literature are provided.
+
 The entry page provides a short help and a set of links
 to various pages, including this one.
 
@@ -45,20 +49,17 @@ the other ones implement different analysis methods.
 
 ## References
 
-A good introduction to the data and methods can be found in the 
-following articles:
-
-* Pernot and A. Savin (2018) 
+1. Pernot and A. Savin (2018) 
   [_J. Chem. Phys._ __148__:241707](http://dx.doi.org/10.1063/1.5016248)     
 
-* P. Pernot and A. Savin (2020)
+2. P. Pernot and A. Savin (2020)
   [_J. Chem. Phys._ __152__:164108](http://dx.doi.org/10.1063/5.0006202);
   [arXiv](https://arxiv.org/abs/2003.00987)    
 
-* P. Pernot and A. Savin (2020)
+3. P. Pernot and A. Savin (2020)
   [_J. Chem. Phys._ __152__:164109](http://dx.doi.org/10.1063/5.0006204);
   [arXiv](https://arxiv.org/abs/2003.01572)
 
-* P. Pernot and A. Savin (2021)
+4. P. Pernot and A. Savin (2021)
   [arXiv](https://arxiv.org/abs/2012.09589) 
 
