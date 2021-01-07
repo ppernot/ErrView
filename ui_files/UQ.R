@@ -2,6 +2,9 @@ sidebarLayout(
   sidebarPanel(
     width = sideWidth,
     h4("Uncertainty quantification"),
+    strong("Experimental: unvalidated methods."),
+    br(),
+    strong("Do not use in production!"),
     hr( style="border-color: #666;"),
     uiOutput("methodsUQ"),
     hr( style="border-color: #666;"),
