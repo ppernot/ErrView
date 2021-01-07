@@ -40,5 +40,12 @@ you will have to download them first from
 A web interface to the code is also available online 
 [here](http://upsa.shinyapps.io/ErrView).
 
-In thise case, the datasets are availble directly on the server.
+Predefined datasets are availble directly on the server.
+
+__Warning !__ This versions runs on a server with limited memory. 
+It will handle only small datasets. Running out of memory will generate 
+a message "Error: An error has occurred. Check your logs or contact 
+the app author for clarification." 
+__Sorry, there is nothing the author can do for you.__
+Please try the `binder` method (see above) of install the code.
 

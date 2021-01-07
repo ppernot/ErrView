@@ -6,6 +6,7 @@ options(
   warn = 0
 )
 
+
 # Local install ----
 
 ## CRAN Libraries ----
@@ -47,6 +48,8 @@ library(boot)
 library(distillery)
 library(ErrViewLib)
 library(ineq)
+library(BiocManager)
+options(repos = BiocManager::repositories())
 library(BiocGenerics)
 library(Biobase)
 library(genefilter)
