@@ -5,7 +5,7 @@ _i.e._, systems that are poorly predicted by all methods in the
 set.
 
 The presence of global outliers has a strong impact on some 
-shape and ranking statistics. 
+shape and ranking statistics [1]. 
 
 They typically originate from problematic experimental
 reference data, or from a common shortcoming in all the
@@ -40,4 +40,15 @@ with care.
 
 * `Methods size`: tweak the size of the methods name
 
+## Plot
+
+Parellel plot of the error sets with delimitation of the
+outliers selection zone and tagging of the global outliers.
+
+## References
+
+1. P. Pernot and A. Savin (2020) Probabilistic performance estimators for
+computational chemistry methods: Systematic Improvement Probability and 
+Ranking Probability Matrix. I. Theory. _J. Chem. Phys._ __152__:164108. 
+http://dx.doi.org/10.1063/5.0006202
 
