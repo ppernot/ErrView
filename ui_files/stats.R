@@ -11,7 +11,8 @@ sidebarLayout(
         'Q95'     = 'q95',
         'Q95(HD)' = 'q95hd',
         'MSE'     = 'mse',
-        'Mode'    = 'hrmode',
+        'HR-Mode' = 'hrmode',
+        'HS-Mode' = 'hsmode',
         'RMSD'    = 'rmsd',
         'MAD_SD'  = 'mad_sd',
         'Skew'    = 'skew',
@@ -22,7 +23,8 @@ sidebarLayout(
         'Gini'    = 'gini',
         'GMCF'    = 'gimc',
         'LAC'     = 'lasym',
-        'Pietra'  = 'pietra'
+        'Pietra'  = 'pietra',
+        'Zanardi' = 'Zanardi'
         ),
       selected = c('mue','q95hd','mse','rmsd','gimc')
     ),
