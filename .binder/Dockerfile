@@ -14,9 +14,3 @@ RUN wget https://github.com/ppernot/ErrView/raw/master/DESCRIPTION\
 && R -e "options(repos = list(CRAN = 'http://mran.revolutionanalytics.com/snapshot/2020-02-28/')); devtools::install_deps()"
 
 RUN rm DESCRIPTION.1; exit 0
-
-# expose port
-EXPOSE 8888
-
-# run app on container start
-CMD ["R", "-e", "shiny::runApp(host = '0.0.0.0', port = 8888)"]

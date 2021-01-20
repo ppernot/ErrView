@@ -8,7 +8,7 @@ sidebarLayout(
         width = 6,
         checkboxInput(
           "giniVsLAC",
-          label = "Gini vs. LAC",
+          label = "Gini vs. Zanardi",
           value = FALSE
         )
       ),
