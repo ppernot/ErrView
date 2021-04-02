@@ -74,6 +74,8 @@ sidebarLayout(
   ),
   mainPanel(
     width = mainWidth,
-    plotOutput("plotHistDist")
+    plotlyOutput("plotlyHistDist",
+                 width  = "800px",
+                 height = "550px")
   )
 )

@@ -13,7 +13,7 @@ options(
 # libs <- c(
 #   "devtools", "Hmisc", "rlist", "boot", "lmtest",
 #   "shiny", "shinyFiles", "BiocManager","Biogenerics","Biobase",
-#   "DT", "tools", "inlmisc", "distillery", "ineq"
+#   "DT", "tools", "inlmisc", "distillery", "ineq","plotly"
 # )
 # for (lib in libs) {
 #   if (!require(lib, character.only = TRUE, quietly = TRUE))
@@ -48,6 +48,7 @@ library(boot)
 library(distillery)
 library(ErrViewLib)
 library(ineq)
+library(plotly)
 library(BiocManager)
 options(repos = BiocManager::repositories())
 library(BiocGenerics)

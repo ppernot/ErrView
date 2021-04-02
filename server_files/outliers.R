@@ -23,6 +23,9 @@ observe({
       )
     )
 
+    if (input$corTrendOut)
+      Errors = trendCorr (Data, Errors, input$ctoDegree)
+
     order  = 1:ncol(Errors)
     if(input$clusterParaPlot)
       order = hclust(dist(t(Errors)))$order

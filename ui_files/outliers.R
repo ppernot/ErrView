@@ -8,6 +8,28 @@ sidebarLayout(
       label = "Scaled Errors",
       value = TRUE
     ),
+    fixedRow(
+      column(
+        width = 6,
+        checkboxInput(
+          'corTrendOut',
+          label = 'Correct trend',
+          value = FALSE
+        )
+      ),
+      column(
+        width = 6,
+        numericInput(
+          'ctoDegree',
+          label = 'Trend degree',
+          value = 0,
+          min   = 0,
+          max   = 2,
+          step  = 1,
+          width = '100px'
+        )
+      )
+    ),
     sliderInput(
       "labelParaPlot",
       label = "Labels Thresh.",
