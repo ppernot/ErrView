@@ -66,10 +66,13 @@ observe({
       outliers = input$outliersParaPlot,
       gPars    = gpLoc)
 
+    if(input$outliersParaPlot == "no")
+      out = NULL
+
     out0 = outSel()
-    if(!identical(out,out0) &
-       input$outliersParaPlot != "no")
+    if(!identical(out,out0))
       outSel(out)
+
   },
   width  = min(1000,max(300,round(plotWidth  * K()^0.5 / nomSize))),
   height = plotHeight

@@ -16,6 +16,7 @@ Depends:
     devtools,
     distillery,
     DT,
+    htmltools,
     ErrViewLib,
     fields,
     Hmisc,
