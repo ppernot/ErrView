@@ -1,4 +1,4 @@
-outSel <- reactiveVal()
+outSel <- reactiveVal(NULL)
 rangesOutliers <- reactiveValues(x = NULL, y = NULL)
 observeEvent(input$outliers_dblclick, {
   brush <- input$outliers_brush
@@ -66,8 +66,9 @@ observe({
       outliers = input$outliersParaPlot,
       gPars    = gpLoc)
 
-    outSel(NULL)
-    if(input$outliersParaPlot != "no")
+    out0 = outSel()
+    if(!identical(out,out0) &
+       input$outliersParaPlot != "no")
       outSel(out)
   },
   width  = min(1000,max(300,round(plotWidth  * K()^0.5 / nomSize))),
