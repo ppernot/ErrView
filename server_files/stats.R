@@ -53,6 +53,22 @@ output$outStats1 <- renderPrint({
   rownames(df)=NULL
   print(df[,sel],)
 })
+tableparams <- reactiveValues()
+observeEvent(
+  {input$genStats &
+      input$pinvChoice &
+      input$numDig == 1 &
+      input$formUnc
+  },
+  {
+  if(is.null(input$outStats_rows_current)){
+    tableparams$pageLength <- 12
+  }
+  else{
+    tableparams$pageLength <- length(input$outStats_rows_current)
+  }
+  }
+)
 output$outStats = DT::renderDataTable({
   req(bsList())
 
@@ -67,9 +83,11 @@ output$outStats = DT::renderDataTable({
     short  = input$formUnc
   )
 
-#   # Remove useless columns
-#   sel = ! colnames(df) %in% c('punc','pg')
-#   df = df[,sel]
+  # Remove useless columns
+  # sel = ! colnames(df) %in% c('punc','pg')
+  sel = !grepl('punc_',colnames(df)) &
+        !grepl('pg_',colnames(df))
+  df = df[,sel]
 
   # Set units in the footer to avoid mixing with data
   sketch <- htmltools::withTags(table(
@@ -85,11 +103,17 @@ output$outStats = DT::renderDataTable({
     container = sketch,
     options = list(
       paging      = TRUE,
+      pageLength  = tableparams$pageLength,
       ordering    = TRUE,
       searching   = FALSE,
       scrollX     = TRUE,
       dom         = 'Btip',
+      lengthMenu  = list(
+        list( 10, 12, 25, 50, -1 ),
+        list( '10 rows', 'Default','25 rows', '50 rows', 'Show all' )
+      ),
       buttons     = list(
+        'pageLength',
         list(
           extend = "copy",
           text = "Copy",
@@ -108,8 +132,10 @@ output$outStats = DT::renderDataTable({
       ),
       deferRender = TRUE
     ),
-    selection = list(target = 'row',
-                     selected = which.min(df[-1,'mue'])),
+    selection = list(
+      target   = 'row',
+      selected = which.min(as.numeric(bs[['mue']]$val))
+    ),
     escape        = TRUE,
     rownames      = FALSE,
     extensions    = c('Buttons')

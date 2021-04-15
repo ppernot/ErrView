@@ -35,13 +35,7 @@ sidebarLayout(
           "sipChoice",
           label = "SIP analysis",
           value = FALSE
-        ),
-        checkboxInput(
-          "pinvChoice",
-          label = "Show Pinv",
-          value = TRUE
-        ),
-
+        )
       ),
       column(
         width =6,
@@ -81,6 +75,12 @@ sidebarLayout(
           max   = 2,
           step  = 1,
           width = '100px'
+        ),
+        hr(style="border-color: #666;"),
+        checkboxInput(
+          "pinvChoice",
+          label = "Show Pinv",
+          value = TRUE
         )
       )
     )
