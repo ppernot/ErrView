@@ -55,6 +55,7 @@ output$outStats1 <- renderPrint({
 })
 tableparams <- reactiveValues()
 observeEvent(
+  # Save pageLength between call to outStats
   {input$genStats &
       input$pinvChoice &
       input$numDig == 1 &
@@ -62,6 +63,7 @@ observeEvent(
   },
   {
   if(is.null(input$outStats_rows_current)){
+    # Default to fill pleasingly window space
     tableparams$pageLength <- 12
   }
   else{
