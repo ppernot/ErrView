@@ -69,14 +69,19 @@ output$plotlyHistDist <- renderPlotly({
     need(
       !is.null(input$dataFile),
       'Please choose a datafile !'
+    ),
+    need(
+      !is.null(input$selMethHD) &
+        input$selMethHD %in% methList,
+      'Please choose a method !'
     )
   )
 
   if(!is.null(outSel()) &
      input$removeGlobOut) {
-    Errors = Errors[ !outSel(), ]
-    Data   = Data[ !outSel(), ]
-    systems= systems[ !outSel() ]
+    Errors  = Errors[ !outSel(), ]
+    Data    = Data[ !outSel(), ]
+    systems = systems[ !outSel() ]
   }
 
   gpLoc = gPars
