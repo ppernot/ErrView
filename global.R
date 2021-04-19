@@ -1,6 +1,6 @@
 version = 1.3
 
-# Increas max loading size to 30 Mo
+# Increase max loading size to 30 Mo
 options(shiny.maxRequestSize=30*1024^2)
 
 source("R/packages.R")
@@ -13,18 +13,7 @@ plotWidth  <- 750
 nomSize    <- 5 # Size of matrix for good plot with plotHeight px
 
 # Graphical parameters ####
-gPars = list(
-  cols     = rev(inlmisc::GetColors(8))[1:7],
-  cols_tr  = rev(inlmisc::GetColors(8, alpha = 0.1))[1:7],
-  cols_tr2 = rev(inlmisc::GetColors(8, alpha = 0.4))[1:7],
-  pty      = 's',
-  mar      = c(3, 3, 1, 1),
-  mgp      = c(2, .75, 0),
-  tcl      = -0.5,
-  lwd      = 2,
-  cex      = 1.4,
-  cex.leg  = 0.8
-)
+gPars = ErrViewLib::setgPars('shiny')
 
 options(boot.parallel = "multicore")
 options(boot.ncpus = 4)

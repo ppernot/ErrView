@@ -99,6 +99,10 @@ output$outStats = DT::renderDataTable({
     tableFooter(unlist(df[1,]))
   ))
 
+  # TBD: Correct ordering problem with strings (ex: 11 < 2)
+  # --> use dual columns methods and left_padding by 0s, as in
+  # https://www.pierrerebours.com/2017/09/custom-sorting-with-dt.html
+
   DT::datatable(
     df[-1, ],
     # Remove units from data
