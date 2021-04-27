@@ -13,11 +13,10 @@ output$selectMsg <- renderPrint({
 
   cat('Data set : ', input$dataFile[['name']],'\n')
 
-  data = read.csv(
+  data = data.table::fread(
     file=input$dataFile$datapath,
     header=TRUE,
-    stringsAsFactors = FALSE,
-    check.names = FALSE)
+    data.table = FALSE)
   systems <<- data[,1]
   rownames(data) = systems
   Ref <<- data[,2]
