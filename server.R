@@ -3,6 +3,7 @@ function(input, output, session) {
   # Load Server files ####
   files <- c(
     "loadData.R",
+    "eda.R",
     "outliers.R",
     "stats.R",
     "histDist.R",

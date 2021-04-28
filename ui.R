@@ -16,6 +16,10 @@ function(request) {
       source_ui("loadData.R")
     ),
     tabPanel(
+      title = "EDA",
+      source_ui("eda.R")
+    ),
+    tabPanel(
       title = "Outliers",
       source_ui("outliers.R")
     ),

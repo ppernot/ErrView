@@ -9,9 +9,11 @@ observeEvent(
     }
 
     if (input$corTrendStat)
-      Errors = trendCorr (Data, Errors, input$ctsDegree)
+      Errors = ErrViewLib::trendCorr(
+        Data, Errors, input$ctsDegree
+      )
 
-    bs = estBS1(
+    bs = ErrViewLib::estBS1(
       Errors,
       props = input$statsChoice,
       eps = 1,
@@ -38,11 +40,10 @@ output$outStatsMsg <- renderPrint({
     return(cat('Outliers changed: please regenerate stats...'))
 })
 output$outStats1 <- renderPrint({
-  if(is.null(bsList()))
-    return(NULL)
+  req(bsList())
 
   bs = bsList()
-  df = genTabStat(
+  df = ErrViewLib::genTabStat(
     bs,
     comp=input$pinvChoice,
     ref = 0,
@@ -92,12 +93,14 @@ output$outStats = DT::renderDataTable({
   df = df[,sel]
 
   # Set units in the footer to avoid mixing with data
-  sketch <- htmltools::withTags(table(
-    class = "display",
-    style = "bootstrap",
-    tableHeader(colnames(df)),
-    tableFooter(unlist(df[1,]))
-  ))
+  sketch <- htmltools::withTags(
+    table(
+      class = "display",
+      style = "bootstrap",
+      tableHeader(colnames(df)),
+      tableFooter(unlist(df[1,]))
+    )
+  )
 
   # TBD: Correct ordering problem with strings (ex: 11 < 2)
   # --> use dual columns methods and left_padding by 0s, as in
