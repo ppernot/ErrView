@@ -15,6 +15,7 @@ function(input, output, session) {
     "ranking.R",
     "sip.R",
     "delta.R",
+    "sim.R",
     "UQ.R"
   )
 

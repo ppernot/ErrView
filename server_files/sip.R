@@ -32,13 +32,14 @@ observe({
       S = bsList()
     }
 
-    plotSIPMat(
+    ErrViewLib::plotSIPMat(
       S$sip,
       cex.lab = input$sipCexLab,
       gPars = gPars)
 
   },
-  width  = round(plotWidth  * K()^0.5 / nomSize),
-  height = round(plotHeight * K()^0.5 / nomSize)
+  # width  = round(plotWidth  * K()^0.5 / nomSize),
+  # height = round(plotHeight * K()^0.5 / nomSize)
+  width  = 1.25*plotWidth, height = plotHeight
   )
 })

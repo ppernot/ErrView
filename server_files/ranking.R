@@ -34,7 +34,7 @@ observe({
       # }
     }
 
-    plotRankMat(
+    ErrViewLib::plotRankMat(
       E         = Errors,
       tab       = tab,
       score     = score,
@@ -46,8 +46,9 @@ observe({
       gPars     = gPars)
 
   },
-  # Best with square plot, except for small matrices
-  width  = max(300,round(plotHeight * K()^0.5 / nomSize)),
-  height = max(200,round(plotHeight * K()^0.5 / nomSize))
+  # # Best with square plot, except for small matrices
+  # width  = max(300,round(plotHeight * K()^0.5 / nomSize)),
+  # height = max(200,round(plotHeight * K()^0.5 / nomSize))
+  width  = 1.25*plotWidth, height = 1.25*plotHeight
   )
 })

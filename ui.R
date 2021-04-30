@@ -64,6 +64,10 @@ function(request) {
       source_ui("delta.R")
     ),
     tabPanel(
+      title = "Similarity",
+      source_ui("sim.R")
+    ),
+    tabPanel(
       title = "UQ",
       source_ui("UQ.R")
     )

@@ -14,7 +14,7 @@ options(
 #   "devtools", "Hmisc", "rlist", "boot", "lmtest",
 #   "shiny", "shinyFiles", "BiocManager","Biogenerics","Biobase",
 #   "DT", "tools", "inlmisc", "distillery", "ineq","plotly",
-#   "data.table"
+#   "data.table","pvclust"
 # )
 # for (lib in libs) {
 #   if (!require(lib, character.only = TRUE, quietly = TRUE))
@@ -52,6 +52,7 @@ library(ErrViewLib)
 library(ineq)
 library(data.table)
 library(plotly)
+library(pvclust)
 library(BiocManager)
 options(repos = BiocManager::repositories())
 library(BiocGenerics)
