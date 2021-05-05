@@ -2,7 +2,6 @@ sidebarLayout(
   sidebarPanel(
     width = sideWidth,
     h4("Errors vs. Normal"),
-
     hr( style="border-color: #666;"),
     uiOutput("methodsQQ"),
     checkboxInput(
@@ -10,8 +9,12 @@ sidebarLayout(
       label = 'Remove glob. outl.',
       value = FALSE
     ),
-
     hr( style="border-color: #666;"),
+    checkboxInput(
+      'ppNorm',
+      label = 'Proba-Proba plot',
+      value = FALSE
+    ),
     checkboxInput(
       'regQQ',
       label = 'Inter-quartile Reg. line',
