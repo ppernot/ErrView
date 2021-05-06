@@ -26,19 +26,20 @@ output$plotQQ <- renderPlot({
 
   if(!input$ppNorm)
     ErrViewLib::plotZscoreQqnorm(
-      R = scale(X, center = TRUE, scale = TRUE),
-      sig = 1,
-      lim = input$limQQ,
-      plotCI = input$ciQQ,
+      scale(X, center = TRUE, scale = TRUE),
+      sig     = 1,
+      lim     = input$limQQ,
+      plotCI  = input$ciQQ,
       plotReg = input$regQQ,
       # markOutliers = input$moQQ,
       # labels = systems,
-      title = 'Centered and scaled errors',
-      gPars = gPars
+      title   = 'Centered and scaled errors',
+      gPars   = gPars
     )
   else
     ErrViewLib::plotPpnorm(
       X,
+      scale  = TRUE,
       plotCI = input$ciQQ,
       score  = TRUE,
       title  = 'Centered and scaled errors',
