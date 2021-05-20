@@ -55,7 +55,7 @@ output$plotHistDist <- renderPlot({
     degree    = if(input$corTrendHD) 1 else input$cthdDegree,
                  # Basic trend line if already corrected
     plotBA    = input$baHD,   # Bland-Altman LOAs
-    plotBAci  = input$baHD,   # 95% CI on Bland-Altman LOAs
+    plotBAci  = input$baCI,   # 95% CI on Bland-Altman LOAs
     xlim      = c(min(x),1.1*max(x)),# Leave space for labels
     ylim      = if(input$yScale) range(Errors) else range(y),
     scaleLegBA= 1,
@@ -114,7 +114,7 @@ output$plotlyHistDist <- renderPlotly({
     degree    = if(input$corTrendHD) 1 else input$cthdDegree,
     # Basic trend line if already corrected
     plotBA    = input$baHD,   # Bland-Altman LOAs
-    plotBAci  = input$baHD,   # 95% CI on Bland-Altman LOAs
+    plotBAci  = input$baCI,   # 95% CI on Bland-Altman LOAs
     xlim      = c(min(x),1.1*max(x)),# Leave space for labels
     ylim      = if(input$yScale) range(Errors) else range(y),
     scaleLegBA= 1,

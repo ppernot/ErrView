@@ -23,7 +23,7 @@ sidebarLayout(
     checkboxInput(
       'showCI',
       label = '95 % CIs',
-      value = TRUE
+      value = FALSE
     )
   ),
   mainPanel(

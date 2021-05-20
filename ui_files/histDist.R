@@ -53,13 +53,24 @@ sidebarLayout(
       label = 'Correct trend',
       value = FALSE
     ),
-
     hr( style="border-color: #666;"),
-
-    checkboxInput(
-      'baHD',
-      label = 'Bland-Altmann',
-      value = TRUE
+    fixedRow(
+      column(
+        width = 6,
+        checkboxInput(
+          'baHD',
+          label = 'Bland-Altmann',
+          value = FALSE
+        )
+      ),
+      column(
+        width = 6,
+        checkboxInput(
+          'baCI',
+          label = '95 % CIs',
+          value = FALSE
+        )
+      )
     ),
     checkboxInput(
       'outHD',
