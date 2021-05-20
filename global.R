@@ -1,7 +1,10 @@
 version = 1.3
 
 # Increase max loading size to 30 Mo
-options(shiny.maxRequestSize=30*1024^2)
+options(
+  shiny.maxRequestSize=30*1024^2,
+  width = 70
+)
 
 source("R/packages.R")
 

@@ -11,7 +11,7 @@ output$selectMsg <- renderPrint({
     return()
   }
 
-  cat('Data set : ', input$dataFile[['name']],'\n')
+  cat('Data set : ', input$dataFile[['name']],'\n\n')
 
   data = data.table::fread(
     file=input$dataFile$datapath,
@@ -20,7 +20,7 @@ output$selectMsg <- renderPrint({
   systems <<- data[,1]
   rownames(data) = systems
   Ref <<- data[,2]
-  Data <<- data[,-c(1,2)]
+  Data <<- data[,-c(1,2),]
   if(ncol(data) == 3) {
     # Single method in dataset: force df structure
     df = data.frame(data[,-c(1,2)])
@@ -39,12 +39,19 @@ output$selectMsg <- renderPrint({
   if(input$useRelative)
     dataUnits('')
 
-  cat('Errors (first lines)\n')
-  print(head(signif(Errors,2), n = 5))
-  cat('\n')
   cat('Systems  : ', length(systems),'\n')
   cat('Methods  : ', K(),'\n')
   cat('Units    : ', dataUnits(),'\n')
+  cat('\n')
+  cat('> Ref and Data (5 first lines):\n\n')
+  M = data.table(cbind(Systems = systems, Ref = Ref, Data)[1:5,,drop=FALSE])
+  print(M, trunc.cols = TRUE,row.names = FALSE)
+  cat('\n')
+  cat('> Errors (5 first lines):\n\n')
+  M = data.table(cbind(Systems = systems, Errors)[1:5,,drop=FALSE])
+  print(M, trunc.cols = TRUE,row.names = FALSE)
+  cat('\n')
+
 
   # [Re]init misc global variables and reactive values
   bsList(NULL)
