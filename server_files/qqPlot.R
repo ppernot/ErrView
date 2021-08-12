@@ -42,7 +42,7 @@ output$plotQQ <- renderPlot({
       scale  = TRUE,
       plotCI = input$ciQQ,
       score  = TRUE,
-      title  = 'Centered and scaled errors',
+      title  = '',
       gPars  = gPars
     )
 

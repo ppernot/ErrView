@@ -16,13 +16,13 @@ sidebarLayout(
       value = FALSE
     ),
     checkboxInput(
-      'regQQ',
-      label = 'Inter-quartile Reg. line',
+      'ciQQ',
+      label = 'Confidence interval',
       value = FALSE
     ),
     checkboxInput(
-      'ciQQ',
-      label = 'Confidence interval',
+      'regQQ',
+      label = 'Inter-quartile Reg. line',
       value = FALSE
     ),
     sliderInput(
