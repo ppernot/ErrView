@@ -16,7 +16,7 @@ http://dx.doi.org/10.1063/5.0006202
 
 3. P. Pernot and A. Savin (2021) Using the Gini coefficient 
 to characterize the shape of computational chemistry error 
-distributions. _arXiv_ https://arxiv.org/abs/2012.09589
+distributions. _Theor. Chem. Acc._ __140__:24 https://doi.org/10.1007/s00214-021-02725-0 ; https://arxiv.org/abs/2012.09589
 
 Please cite these articles if you use the code.
 
